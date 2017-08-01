@@ -12,5 +12,4 @@
 */
 
 Route::get('/', 'LocationsController@start');
-Route::get('/treffpunkte', 'LocationsController@index');
-Route::get('/treffpunkte/{id}', 'LocationsController@show');
+Route::get('/treffpunkte/{punkt}', 'LocationsController@show');

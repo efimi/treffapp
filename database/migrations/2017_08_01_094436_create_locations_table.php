@@ -21,6 +21,10 @@ class CreateLocationsTable extends Migration
             $table->tinyInteger('phonenumber')->unique();
             $table->tinyInteger('mobile')->unique();
             $table->string('email',100)->unique();
+            // $table->boolean('is_filled_up')->default(flase);
+            $table->tinyInteger('avaliable_places')->unsigned();
+
+
 
             $table->json('open_array');
             $table->string('closed_on');

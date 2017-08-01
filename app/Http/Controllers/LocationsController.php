@@ -9,31 +9,11 @@ class LocationsController extends Controller
     //
     public function start()
     {
-        return view('start');
-    }
-
-    public function index()
-    {
       return view('start');
     }
 
-    public function show()
+    public function show(Location $punkt)
     {
-      return view('start');
-    }
-
-    public function delete()
-    {
-      return view('start');
-    }
-
-    public function edit()
-    {
-      return view('start');
-    }
-
-    public function store()
-    {
-      return view('start');
+      return view('locations.show', compact('punkt'))
     }
 }
