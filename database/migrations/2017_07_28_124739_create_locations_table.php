@@ -17,9 +17,18 @@ class CreateLocationsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('address');
-            $table->binary('open');
-            $table->string('name');
-            $table->string('name');
+
+            $table->tinyInteger('phonenumber')->unique();
+            $table->tinyInteger('mobile')->unique();
+            $table->string('email',100)->unique();
+
+            $table->json('open_array');
+            $table->string('closed_on');
+            $table->time('open_from');
+            $table->time('open_till');
+
+            $table->binary('logo');
+            $table->string('slogan');
 
 
             $table->timestamps();
