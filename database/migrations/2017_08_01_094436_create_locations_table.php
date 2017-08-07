@@ -15,14 +15,16 @@ class CreateLocationsTable extends Migration
     {
         Schema::create('locations', function (Blueprint $table) {
             $table->increments('id');
+            $table->boolean('is_used');
             $table->string('name');
             $table->string('address');
 
-            $table->tinyInteger('phonenumber')->unique();
-            $table->tinyInteger('mobile')->unique();
-            $table->string('email',100)->unique();
+            $table->Integer('phonenumber');
+            $table->Integer('mobile');
+            $table->string('email',100);
             // $table->boolean('is_filled_up')->default(flase);
-            $table->tinyInteger('avaliable_places')->unsigned();
+            $table->Integer('used_places')->unsigned();
+            $table->Integer('avaliable_places')->unsigned();
 
 
 

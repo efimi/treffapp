@@ -12,4 +12,6 @@
 */
 
 Route::get('/', 'LocationsController@start');
+Route::get('/getplace', 'LocationsController@randPlace');
+
 Route::get('/treffpunkte/{punkt}', 'LocationsController@show');

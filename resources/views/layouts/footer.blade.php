@@ -1,5 +1,6 @@
 <footer class="footer">
 
-  <p class="lead">&copy;  2017 | <a href="/impressum">Impressum</a> |
-  <a href="/participants">Wir machen mit</a> </p>
+  <p class="lead text-center">&copy;  2017 TreffApp | <a href="/impressum">Impressum</a> |
+  <a href="/participants">Locations </a> |
+  <a href="/participants">FAQ</a> </p>
 </footer>
