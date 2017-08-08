@@ -11,5 +11,9 @@ class Visitor extends Model
     {
       return $this->belongsTo(Location::class);
     }
+    public function logbook()
+    {
+      return $this->belongsTo(LogBook::class);
+    }
 
 }

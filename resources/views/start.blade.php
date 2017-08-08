@@ -5,22 +5,30 @@
   <div class="jumbotron">
 
     <h1>Treffapp</h1>
-
     <p class="lead">Drücke auf den Button </p>
     <p class="">und finde heraus wo es heute für dich hingeht</p>
 
-    <p><a class="btn btn-lg btn-primary" role="button" id="button">Let's Go</a></p>
+    <p>
+        @if ($location)
+          <div class="btn btn-lg btn-primary" role="button" id="button" disabled="disabled">  Wir warten auf dich :)  </div>
+          @else
+            <div class="btn btn-lg btn-primary" role="button" id="button" disabled="disabled">  Let's Go!  </div>
+          @endif
+    </p>
+
 
     <div id="showplace">
 
-          @if($location)
+        <div id="database_entry">
+            @if($location)
               <p>{{ $location->name }}</p>
-              <p>{{ $location->address }}</p>
+              <p>{{ $location->id }}</p>
               <p> Heute 20:00</p>
               <div id="current_matched">
                 <?php // TODO: ajax call from database ?>
               </div>
           @endif
+        </div>
     </div>
 
   </div>
@@ -29,7 +37,7 @@
     <p>Deine IP:   {{ request()->ip() }}</p>
 
     <p> Deine Jetzige Session ID:</p>
-    <p class="text-center">{{ Session::getId() }}</p>
+    <small>  {{ Session::getId() }}</small>
     <p><?php
     session_start();
 
@@ -52,27 +60,42 @@
     $(function() {
       // .one =  nur einmal ausfßhren von dem Code
       $('#button').one('click',function () {
+        var btn = $(this);
+        btn.text('Deine Location wird gesucht:');
+        btn.attr('disabled','disabled');
+        $('#database_entry').hide();
 
         $.ajax({
           url: 'getplace',
           method: 'get',
           success: function (data) {
             console.log(data);
-            $('#showplace').append($('<p>', {
+
+            $('#database_entry').append($('<p>', {
                 text: data.loc.name
             }));
-            $('#showplace').append($('<p>', {
-                text: data.loc.address
+            $('#database_entry').append($('<p>', {
+                text: data.loc.id
             }));
-            $('#showplace').append($('<p>', {
+            $('#database_entry').append($('<p>', {
                 text: "Heute um 20:00"
             }));
+
           },
           error: function (error) {
             console.log(error);
+          },
+          complete: function (){
+            $('#database_entry').fadeIn(300);
+            // TODO: Change Text to something else
+            btn.text('Viel Spass!');
           }
         });
+
+
+
       });
+
     });
     </script>
   @endif

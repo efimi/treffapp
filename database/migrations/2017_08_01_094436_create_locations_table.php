@@ -26,16 +26,16 @@ class CreateLocationsTable extends Migration
             $table->Integer('used_places')->unsigned();
             $table->Integer('avaliable_places')->unsigned();
 
-
-
-            $table->json('open_array');
             $table->string('closed_on');
             $table->time('open_from');
             $table->time('open_till');
 
             $table->binary('logo');
             $table->string('slogan');
-
+            $table->string('url');
+            // TODO: Add link to googlempas field to framework
+            $table->string('googlemaps_frame');
+            
 
             $table->timestamps();
         });

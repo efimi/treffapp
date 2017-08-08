@@ -9,21 +9,28 @@ use Carbon\Carbon;
 class LocationsController extends Controller
 {
     //
+
     public function start()
     {
+      Carbon::setLocale('de');
+      $today = Carbon::now()->formatLocalized('%A %d %B %Y');
       $location = null;
       if(session()->get('location') != null) {
           $location = Location::find(session()->get('location'));
       }
 
-      return view('start', compact('location'));
+      return view('start', compact('location','today'));
     }
 
     public function randPlace()
     {
-      $used_exist = Location::where('is_used', true)->first();
 
-      if($used_exist!=NULL && ($used_exist->used_places <= 3)){
+
+      $used_exist = Location::where('is_used', true)->where('used_places','<=','3')->first();
+      // TODO: All locations used if no one more free
+      // TODO: Log all used in LogBook Table
+
+      if($used_exist!=NULL){
           $loc = $used_exist;
 
       }

@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
+
 
 class Location extends Model
 {
@@ -20,7 +22,9 @@ class Location extends Model
     }
     public static function getNewRandom()
     {
-        return self::where('is_used', false)->inRandomOrder()->first();
+      
+      $today = Carbon::now()->formatLocalized('%A');
+      return self::where('closed_on', '!=', $today)->where('is_used', false)->inRandomOrder()->first();
     }
 
 }
