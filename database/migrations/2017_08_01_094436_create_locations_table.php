@@ -35,7 +35,7 @@ class CreateLocationsTable extends Migration
             $table->string('url');
             // TODO: Add link to googlempas field to framework
             $table->string('googlemaps_frame');
-            
+
 
             $table->timestamps();
         });
@@ -48,6 +48,8 @@ class CreateLocationsTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('locations');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

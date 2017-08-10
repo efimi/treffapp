@@ -31,6 +31,8 @@ class CreateLogBooksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('log_books');
+      DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+      Schema::dropIfExists('log_books');
+      DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }
