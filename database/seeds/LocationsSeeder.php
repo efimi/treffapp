@@ -12,9 +12,7 @@ class LocationsSeeder extends Seeder
      */
     public function run()
     {
-        //
-        Location::insert([
-          'name'
-        ]);
+      factory(App\Location::class, 20)
+        ->create();
     }
 }

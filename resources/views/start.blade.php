@@ -2,27 +2,34 @@
 
 @section('content')
 
-  <div class="jumbotron">
+
+  <div class="jumbotron" id="startlogo">
 
     <h1>Treffapp</h1>
     <p class="lead">Drücke auf den Button </p>
     <p class="">und finde heraus wo es heute für dich hingeht</p>
 
     <p>
-        @if ($location)
+        @if($location)
           <div class="btn btn-lg btn-primary" role="button" id="button" disabled="disabled">  Wir warten auf dich :)  </div>
           @else
             <div class="btn btn-lg btn-primary" role="button" id="button" >  Let's Go!  </div>
+
           @endif
     </p>
 
 
+
+
+  </div>
+
+  <div class="jumbotron">
     <div id="showplace">
 
         <div id="database_entry">
             @if($location)
               <p>{{ $location->name }}</p>
-              <p>{{ $location->id }}</p>
+              <div>{{ $location->googlemaps_frame }}</div>
               <p> Heute 20:00</p>
               <div id="current_matched">
                 <?php // TODO: ajax call from database ?>
@@ -31,30 +38,9 @@
         </div>
     </div>
 
+    {{-- @include('ip_debug.blade.php') --}}
   </div>
 
-  <div class="jumbotron">
-    <p>Deine IP:   {{ request()->ip() }}</p>
-
-    <p> Deine Jetzige Session ID:</p>
-    <small>  {{ Session::getId() }}</small>
-    <p><?php
-    session_start();
-
-
-    if (!isset($_SESSION['visited'])) {
-       echo "Du hast diese Seite noch nicht besucht";
-       // TODO: loadrandom palce, save with Session
-       $_SESSION['visited'] = true;
-
-    } else {
-       echo "Du hast diese Seite zuvor schon aufgerufen";
-       // TODO: get SessionID,
-       // TODO: show myplace form sessionID
-    }
-    ?>
-    </p>
-</div>
   @if(!$location)
     <script>
     $(function() {
@@ -71,11 +57,12 @@
           success: function (data) {
             console.log(data);
 
+            $('#startlogo').delay( 800 ).fadeIn( 400 );
             $('#database_entry').append($('<p>', {
                 text: data.loc.name
             }));
-            $('#database_entry').append($('<p>', {
-                text: data.loc.id
+            $('#database_entry').append($('<div>', {
+                text: data.loc.googlemaps_frame
             }));
             $('#database_entry').append($('<p>', {
                 text: "Heute um 20:00"
@@ -99,4 +86,7 @@
     });
     </script>
   @endif
+  <script src="js/classie.js"></script>
+	<script src="js/pathLoader.js"></script>
+	<script src="js/main.js"></script>
 @endsection

@@ -37,7 +37,7 @@ body {
     max-width: 46rem;
   }
 }
-.container-narrow > hr {
+.container > hr {
   margin: 2rem 0;
 }
 

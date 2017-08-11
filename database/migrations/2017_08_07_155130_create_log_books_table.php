@@ -16,7 +16,7 @@ class CreateLogBooksTable extends Migration
         Schema::create('log_books', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('locaitons_id')->unsigned();
-            $table->string('LocationsName');
+            $table->string('LocationName');
             $table->time('date');
             // TODO: date type exists?
             // TODO: how often overall used?
@@ -31,6 +31,8 @@ class CreateLogBooksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('log_books');
+      DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+      Schema::dropIfExists('log_books');
+      DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }
