@@ -12,7 +12,7 @@
         @if ($location)
           <div class="btn btn-lg btn-primary" role="button" id="button" disabled="disabled">  Wir warten auf dich :)  </div>
           @else
-            <div class="btn btn-lg btn-primary" role="button" id="button" disabled="disabled">  Let's Go!  </div>
+            <div class="btn btn-lg btn-primary" role="button" id="button" >  Let's Go!  </div>
           @endif
     </p>
 
