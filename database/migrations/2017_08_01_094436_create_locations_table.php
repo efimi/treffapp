@@ -15,26 +15,28 @@ class CreateLocationsTable extends Migration
     {
         Schema::create('locations', function (Blueprint $table) {
             $table->increments('id');
-            $table->boolean('is_used');
-            $table->string('name');
-            $table->string('address');
+            $table->boolean('is_used')->nullable();
+            $table->string('name')->nullable();
+            $table->string('address')->nullable();
 
-            $table->Integer('phonenumber');
-            $table->Integer('mobile');
-            $table->string('email',100);
-            // $table->boolean('is_filled_up')->default(flase);
-            $table->Integer('used_places')->unsigned();
-            $table->Integer('avaliable_places')->unsigned();
+            $table->string('phonenumber')->nullable();
+            $table->Integer('mobile')->nullable();
+            $table->string('email',100)->nullable();
+            // $table->boolean('is_filled_up')->default(flase)->nullable();
+            $table->Integer('used_places')->unsigned()->nullable();
+            $table->Integer('max_places')->unsigned()->nullable();
 
-            $table->string('closed_on');
-            $table->time('open_from');
-            $table->time('open_till');
+            $table->integer('closed_on')->nullable();
+            $table->time('open_from')->nullable();
+            $table->time('open_till')->nullable();
 
-            $table->binary('logo');
-            $table->string('slogan');
-            $table->string('url');
+            $table->binary('logo')->nullable();
+            $table->string('slogan')->nullable();
+            $table->string('url')->nullable();
             // TODO: Add link to googlempas field to framework
-            $table->string('googlemaps_frame');
+            $table->text('googlemaps_frame')->nullable();
+            $table->decimal('long', 10, 7);
+            $table->decimal('lat', 10, 7);
 
 
             $table->timestamps();

@@ -27,7 +27,7 @@
         <div id="database_entry">
             @if($location)
               <p>{{ $location->name }}</p>
-              <p>{{ $location->id }}</p>
+              <div>{{ $location->googlemaps_frame }}</div>
               <p> Heute 20:00</p>
               <div id="current_matched">
                 <?php // TODO: ajax call from database ?>
@@ -54,12 +54,12 @@
           success: function (data) {
             console.log(data);
 
-            $('#startlogo').slideUp(2000 ).delay( 800 ).fadeIn( 400 );
+            $('#startlogo').delay( 800 ).fadeIn( 400 );
             $('#database_entry').append($('<p>', {
                 text: data.loc.name
             }));
-            $('#database_entry').append($('<p>', {
-                text: data.loc.id
+            $('#database_entry').append($('<div>', {
+                text: data.loc.googlemaps_frame
             }));
             $('#database_entry').append($('<p>', {
                 text: "Heute um 20:00"
