@@ -5,7 +5,9 @@
 
   <div class="jumbotron" id="startlogo">
 
-    <h1>Treffapp</h1>
+     <img class="img-responsive" src="/img/logo.png" alt="logoPadermeet">
+     <br>
+     <br>
     <p class="lead">Drücke auf den Button </p>
     <p class="">und finde heraus wo es heute für dich hingeht</p>
 
@@ -30,7 +32,7 @@
             @if($location)
               <p>{{ $location->name }}</p>
               <div>{{ $location->googlemaps_frame }}</div>
-              <p> Heute 20:00</p>
+              <p>Heute 20:00</p>
               <div id="current_matched">
                 <?php // TODO: ajax call from database ?>
               </div>
@@ -56,7 +58,7 @@
           method: 'get',
           success: function (data) {
             console.log(data);
-
+            // hide div
             $('#startlogo').delay( 800 ).fadeIn( 400 );
             $('#database_entry').append($('<p>', {
                 text: data.loc.name
@@ -67,6 +69,10 @@
             $('#database_entry').append($('<p>', {
                 text: "Heute um 20:00"
             }));
+            // scroll to div
+            $('html,body').animate({
+            scrollTop: $("#database_entry").offset().top},
+            'slow');
 
           },
           error: function (error) {

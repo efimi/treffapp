@@ -1,5 +1,7 @@
 /* Space out content a bit */
 body {
+  background: #ffffff;
+	color: #63b4e2;
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
 }
@@ -50,6 +52,7 @@ body {
 .jumbotron #logo {
   background-image: url('/images/logo.png');
 }
+
 .jumbotron .btn {
   padding: .75rem 1.5rem;
   font-size: 1.5rem;

@@ -21,14 +21,14 @@
     <link rel="stylesheet" type="text/css" href="/css/loadeffect.css" />
     <link href="/css/narrow-jumbotron.css" rel="stylesheet">
     <script src="/js/modernizr.custom.js"></script>
-    <script src="/js/main.custom.js"></script>
-    <script src="/js/classie.js"></script>
-    <script src="/js/pathLoader.js"></script>
+    <script src="/js/.custom.js"></script>
+    <script src="/js/modernizr.custom.js"></script>
+    <script src="/js/modernizr.custom.js"></script>
 
   </head>
 
   <body>
-
+    <div id="ip-container" class="ip-container">
     <!-- initial header -->
       <header class="ip-header">
         <h1 class="ip-logo">
@@ -44,17 +44,12 @@
           </svg>
         </div>
       </header>
-      <!-- top bar -->
-      <div class="codrops-top clearfix">
-        <a class="codrops-icon codrops-icon-prev" href="http://tympanus.net/Development/FullscreenForm/"><span>Previous Demo</span></a>
-        <span class="right"><a class="codrops-icon codrops-icon-drop" href="http://tympanus.net/codrops/?p=19535"><span>Back to the Codrops Article</span></a></span>
-      </div>
-      <!-- main content -->
+
   <div class="ip-main">
     <div class="container">
-         <div class="header clearfix">
+         {{-- <div class="header clearfix">
           @include('layouts.nav')
-         </div>
+         </div> --}}
 
          @yield('content')
 
@@ -76,6 +71,7 @@
 
 
      </div>
+   </div><!--  container -->
   </body>
 
 </html>
