@@ -1,4 +1,5 @@
 $(function() {
+
   // .one =  nur einmal ausführen von dem Code
   $('#button').one('click',function () {
     var btn = $(this);
@@ -23,9 +24,7 @@ $(function() {
             text: "Heute um 20:00"
         }));
         // scroll to div
-        $('html,body').animate({
-        scrollTop: $("#database_entry").offset().top},
-        'slow');
+
 
       },
       error: function (error) {
@@ -35,7 +34,16 @@ $(function() {
         $('#database_entry').fadeIn(300);
         // TODO: Change Text to something else
         btn.text('Viel Spass!');
+        $('html,body').animate({
+        scrollTop: $("#database_entry").offset().top},
+        'fast');
       }
     });
+  });
+
+  $('#button').on('click',function () {
+      $('html,body').animate({
+      scrollTop: $("#database_entry").offset().top},
+      'fast');
   });
 });

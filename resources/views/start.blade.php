@@ -8,7 +8,9 @@
 
         <p>
             @if($location)
-              <div class="btn btn-lg btn-primary" role="button" id="button">  Wir warten auf dich :)  </div>
+              <div class="btn btn-lg btn-primary" role="button" id="button" onclick="$('html,body').animate({
+              scrollTop: $("#database_entry").offset().top},
+              'slow');">  Wir warten auf dich :)  </div>
               @else
               <div class="btn btn-lg btn-primary" role="button" id="button" >  Let's Go!  </div>
 
