@@ -1,7 +1,7 @@
 /* Space out content a bit */
 body {
   background: #ffffff;
-	color: #63b4e2;
+  color: #63b4e2; /* text color*/
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
 }
@@ -49,9 +49,10 @@ body {
   border-bottom: .05rem solid #e5e5e5;
   background-color:transparent !important;
 }
-.jumbotron #logo {
-  background-image: url('/images/logo.png');
-}
+/* scrolling div height like viewpoint */
+/*.jumbotron #resultview {
+  height:100vh;
+}*/
 
 .jumbotron .btn {
   padding: .75rem 1.5rem;

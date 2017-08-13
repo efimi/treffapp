@@ -190,8 +190,10 @@
 }
 
 .loaded .ip-logo {
+	/* TODO: verschwinen by loeschen */
 	-webkit-transform-origin: 50% 0;
 	transform-origin: 50% 0;
+
 	-webkit-animation: animLoadedLogo 1s cubic-bezier(0.7,0,0.3,1) forwards;
 	animation: animLoadedLogo 1s cubic-bezier(0.7,0,0.3,1) forwards;
 }
@@ -201,7 +203,7 @@
 }
 
 @keyframes animLoadedLogo {
-	to { -webkit-transform: translate3d(0,100%,0) translate3d(0,50px,0) scale3d(0.65,0.65,1); transform: translate3d(0,100%,0) translate3d(0,50px,0) scale3d(0.65,0.65,1); }
+	to { -webkit-transform: translate3d(0,100%,0) translate3d(0,50px,0) scale3d(0.50,0.50,1); transform: translate3d(0,100%,0) translate3d(0,50px,0) scale3d(0.50,0.50,1); }
 }
 
 .loaded .ip-loader {
@@ -239,6 +241,7 @@
 }
 
 /* Content animations */
+/* TODO: cahnge jumboron */
 .loaded .ip-main h2,
 .loaded .ip-main .browser,
 .loaded .ip-main .browser .box,
@@ -268,7 +271,7 @@
 }
 
 @keyframes animLoadedContent {
-	from { opacity: 0; -webkit-transform: translate3d(0,200px,0); transform: translate3d(0,200px,0); }
+	from { opacity: 0; -webkit-transform: translate3d(0,200px,0); transform: translate3d(0, ,0); }
 }
 
 /* Change layout class for header */

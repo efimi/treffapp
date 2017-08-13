@@ -2,97 +2,42 @@
 
 @section('content')
 
+  <div class="jumbotron">
+    <p class="lead">Drücke auf den Button</p>
+    <p class="lead">und finde heraus wo es heute für dich hingeht</p>
 
-  <div class="jumbotron" id="startlogo">
+        <p>
+            @if($location)
+              <div class="btn btn-lg btn-primary" role="button" id="button">  Wir warten auf dich :)  </div>
+              @else
+              <div class="btn btn-lg btn-primary" role="button" id="button" >  Let's Go!  </div>
 
-     <img class="img-responsive" src="/img/logo.png" alt="logoPadermeet">
-     <br>
-     <br>
-    <p class="lead">Drücke auf den Button </p>
-    <p class="">und finde heraus wo es heute für dich hingeht</p>
-
-    <p>
-        @if($location)
-          <div class="btn btn-lg btn-primary" role="button" id="button" disabled="disabled">  Wir warten auf dich :)  </div>
-          @else
-            <div class="btn btn-lg btn-primary" role="button" id="button" >  Let's Go!  </div>
-
-          @endif
-    </p>
-
-
-
-
+              @endif
+        </p>
   </div>
 
-  <div class="jumbotron">
-    <div id="showplace">
-
+  <div class="jumbotron" id="resultview">
         <div id="database_entry">
-            @if($location)
-              <p>{{ $location->name }}</p>
-              <div>{{ $location->googlemaps_frame }}</div>
-              <p>Heute 20:00</p>
-              <div id="current_matched">
-                <?php // TODO: ajax call from database ?>
-              </div>
-          @endif
+                            @if($location)
+                              <p>{{ $location->name }}</p>
+                              <div>{{ $location->googlemaps_frame }}</div>
+                              <p>Heute 20:00</p>
+                              <div id="current_matched">
+                                 <?php // TODO: mit Mermkal from visitor->Location(location)->merkmale ?>
+                                @if ($location->used_places ==1)
+                                    @elseif ($location->used_places == 2 )
+                                        <p>Du bist nicht alleine!!:) Derzeit kommt noch eine weitere Person</p>
+                                    @else
+                                        <p>Derzeit kommen noch {{ ($location->used_places)-1 }} weitere Personen</p>
+                                @endif
+                              </div>
+                            @endif
         </div>
-    </div>
 
     {{-- @include('ip_debug.blade.php') --}}
   </div>
 
   @if(!$location)
-    <script>
-    $(function() {
-      // .one =  nur einmal ausfßhren von dem Code
-      $('#button').one('click',function () {
-        var btn = $(this);
-        btn.text('Deine Location wird gesucht:');
-        btn.attr('disabled','disabled');
-        $('#database_entry').hide();
-
-        $.ajax({
-          url: 'getplace',
-          method: 'get',
-          success: function (data) {
-            console.log(data);
-            // hide div
-            $('#startlogo').delay( 800 ).fadeIn( 400 );
-            $('#database_entry').append($('<p>', {
-                text: data.loc.name
-            }));
-            $('#database_entry').append($('<div>', {
-                text: data.loc.googlemaps_frame
-            }));
-            $('#database_entry').append($('<p>', {
-                text: "Heute um 20:00"
-            }));
-            // scroll to div
-            $('html,body').animate({
-            scrollTop: $("#database_entry").offset().top},
-            'slow');
-
-          },
-          error: function (error) {
-            console.log(error);
-          },
-          complete: function (){
-            $('#database_entry').fadeIn(300);
-            // TODO: Change Text to something else
-            btn.text('Viel Spass!');
-          }
-        });
-
-
-
-      });
-
-    });
-    </script>
+    <script src="js/buttonclick.js"></script>
   @endif
-  <script src="js/classie.js"></script>
-	<script src="js/pathLoader.js"></script>
-	<script src="js/main.js"></script>
 @endsection
