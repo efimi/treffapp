@@ -1,19 +1,19 @@
 .pushme {
   position: relative;
-  font-weight: 700;
+  /*font-weight: 700;*/
   background-color: #384D9D;
   border-radius: 0.6em;
   display: inline-block;
-  margin: 1em;
+  margin: 3em;
 }
 .pushme .inner {
   display: inline-block;
-  background-color: #F6F3EB;
+  background-color: #ffff;
   border-radius: 0.6em;
   border: 0.3em solid #384D9D;
-  padding: 1em;
+  padding: 3em;
   cursor: pointer;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;

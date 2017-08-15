@@ -8,11 +8,11 @@
 
         <p>
             @if($location)
-              <div class="pushme btn btn-lg btn-primary" role="button" id="button" onclick="$('html,body').animate({
+              <div class="pushme" role="button" id="button" onclick="$('html,body').animate({
               scrollTop: $("#database_entry").offset().top},
-              'slow');">  Wir warten auf dich :)  </div>
+              'slow');">  <span class="inner">Wir warten auf dich :)  </span> </div>
               @else
-              <div class="superbutton btn btn-lg btn-primary" role="button" id="button" >  Let's Go!  </div>
+              <div class="pushme" role="button" id="button" >  <span class="inner"> Let's Go! </span> </div>
 
               @endif
         </p>
@@ -36,7 +36,7 @@
                             @endif
         </div>
 
-    {{-- @include('ip_debug.blade.php') --}}
+    @include('ip_debug')
   </div>
 
   @if(!$location)
