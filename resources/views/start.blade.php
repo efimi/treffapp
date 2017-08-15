@@ -8,11 +8,11 @@
 
         <p>
             @if($location)
-              <div class="btn btn-lg btn-primary" role="button" id="button" onclick="$('html,body').animate({
+              <div class="pushme btn btn-lg btn-primary" role="button" id="button" onclick="$('html,body').animate({
               scrollTop: $("#database_entry").offset().top},
               'slow');">  Wir warten auf dich :)  </div>
               @else
-              <div class="btn btn-lg btn-primary" role="button" id="button" >  Let's Go!  </div>
+              <div class="superbutton btn btn-lg btn-primary" role="button" id="button" >  Let's Go!  </div>
 
               @endif
         </p>
