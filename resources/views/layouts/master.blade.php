@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Treffapp</title>
+    <title>PaderMeet - Deine Treffapp für Paderborn</title>
 
     <!-- Bootstrap core CSS -->
     <!-- Latest compiled and minified CSS -->

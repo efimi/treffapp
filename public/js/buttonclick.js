@@ -3,7 +3,7 @@ $(function() {
   // .one =  nur einmal ausführen von dem Code
   $('#button').one('click',function () {
     var btn = $(this);
-    btn.text('Deine Location wird gesucht:');
+    btn.children().text('Deine Location wird gesucht:');
     btn.attr('disabled','disabled');
     $('#database_entry').hide();
 
@@ -17,11 +17,13 @@ $(function() {
         $('#database_entry').append($('<p>', {
             text: data.loc.name
         }));
-        $('#database_entry').append($('<div>', {
-            text: data.loc.googlemaps_frame
-        }));
+
         $('#database_entry').append($('<p>', {
             text: "Heute um 20:00"
+        }));
+
+        $('#database_entry').append($('<div>', {
+            text: data.googlemaps_frame
         }));
         // scroll to div
 
@@ -33,7 +35,7 @@ $(function() {
       complete: function (){
         $('#database_entry').fadeIn(300);
         // TODO: Change Text to something else
-        btn.text('Viel Spass!');
+        btn.children().text('Viel Spass!');
         $('html,body').animate({
         scrollTop: $("#database_entry").offset().top},
         'fast');

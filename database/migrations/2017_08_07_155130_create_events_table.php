@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLogBooksTable extends Migration
+class CreateEventsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateLogBooksTable extends Migration
      */
     public function up()
     {
-        Schema::create('log_books', function (Blueprint $table) {
+        Schema::create('events', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('locaitons_id')->unsigned();
             $table->string('LocationName');
@@ -32,7 +32,7 @@ class CreateLogBooksTable extends Migration
     public function down()
     {
       DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-      Schema::dropIfExists('log_books');
+      Schema::dropIfExists('events');
       DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

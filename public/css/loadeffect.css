@@ -7,6 +7,14 @@
 		 url('../fonts/blokk/BLOKKRegular.woff') format('woff'),
 		 url('../fonts/blokk/BLOKKRegular.svg#BLOKKRegular') format('svg');
 }
+@font-face {
+	font-weight: normal;
+	font-style: normal;
+	font-family: 'chunky';
+	src: url('../fonts/chunk.ttf.eot');
+	src: url('../fonts/chunk.ttf.woff') format('woff'),
+		 url('../fonts/chunk.ttf.svg#BLOKKRegular') format('svg');
+}
 
 @font-face {
 	font-weight: normal;
@@ -17,6 +25,10 @@
 		url('../fonts/feather/feather.woff?-9jv4cc') format('woff'),
 		url('../fonts/feather/feather.ttf?-9jv4cc') format('truetype'),
 		url('../fonts/feather/feather.svg?-9jv4cc#feather') format('svg');
+}
+
+.chunky{
+	font-family: 'chunky';
 }
 
 .ip-header {

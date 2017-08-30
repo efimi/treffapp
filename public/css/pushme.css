@@ -11,9 +11,16 @@
   background-color: #ffff;
   border-radius: 0.6em;
   border: 0.3em solid #384D9D;
-  padding: 3em;
+  padding: 0.5em;
   cursor: pointer;
-  /*text-transform: uppercase;*/
+  font-family: 'chunky';
+  font-weight: 1000;
+  /*background: -webkit-linear-gradient(yellow, green);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;*/
+
+  font-size: 1.75em;
+  text-transform: uppercase;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
