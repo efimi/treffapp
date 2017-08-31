@@ -12,6 +12,8 @@
 */
 
 Route::get('/', 'LocationsController@start');
-Route::get('/getplace', 'LocationsController@randPlace');
+Route::post('/getplace', 'LocationsController@randPlace');
 
-Route::get('/treffpunkte/{punkt}', 'LocationsController@show');
+Route::get('/locaitons', 'LocationsController@show');
+Route::get('/faq', function(){return view('faq');});
+Route::get('/impressum', function(){return view('impressum');});

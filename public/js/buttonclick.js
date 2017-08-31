@@ -9,7 +9,8 @@ $(function() {
 
     $.ajax({
       url: 'getplace',
-      method: 'get',
+      method: 'post',
+      data: {'_token': $('meta[name=token]').attr("content"),},
       success: function (data) {
         console.log(data);
         // hide div
