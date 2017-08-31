@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="token" content="{{ csrf_token() }}">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <link rel="icon" href="{{ url('/') }}/favicon.ico">
 
     <title>PaderMeet - Deine Treffapp für Paderborn</title>
 
@@ -19,11 +19,11 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!-- Custom styles for this template -->
-    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="css/narrow-jumbotron.css" >
-    <link rel="stylesheet" type="text/css" href="css/loadeffect.css" />
-    <link rel="stylesheet" type="text/css" href="css/pushme.css" />
-    <script src="js/modernizr.custom.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url('/') }}/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="{{ url('/') }}/css/narrow-jumbotron.css" >
+    <link rel="stylesheet" type="text/css" href="{{ url('/') }}/css/loadeffect.css" />
+    <link rel="stylesheet" type="text/css" href="{{ url('/') }}/css/pushme.css" />
+    <script src="{{ url('/') }}/js/modernizr.custom.js"></script>
 
   </head>
 
@@ -66,9 +66,9 @@
                 </div> <!-- ip-main-->
             </div><!--  ip-container -->
             {{--  Scripts müssen unten sein--}}
-            <script src="js/classie.js"></script>
-            <script src="js/pathLoader.js"></script>
-            <script src="js/main.js"></script>
+            <script src="{{ url('/') }}/js/classie.js"></script>
+            <script src="{{ url('/') }}/js/pathLoader.js"></script>
+            <script src="{{ url('/') }}/js/main.js"></script>
   </body>
 
 </html>

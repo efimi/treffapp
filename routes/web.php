@@ -10,10 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Location;
 
 Route::get('/', 'LocationsController@start');
 Route::post('/getplace', 'LocationsController@randPlace');
 
-Route::get('/locaitons', 'LocationsController@show');
-Route::get('/faq', function(){return view('faq');});
-Route::get('/impressum', function(){return view('impressum');});
+Route::get('/locations', 'LocationsController@index');
+Route::get('/locations/{location}', 'LocationsController@show');
+
+Route::get('/faq', 'StaticSitesController@faq');
+Route::get('/impressum', 'StaticSitesController@impressum');

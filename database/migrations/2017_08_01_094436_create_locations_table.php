@@ -22,7 +22,7 @@ class CreateLocationsTable extends Migration
             $table->string('phonenumber')->nullable();
             $table->Integer('mobile')->nullable();
             $table->string('email',100)->nullable();
-            // $table->boolean('is_filled_up')->default(flase)->nullable();
+            $table->string('password')->nullable();
             $table->Integer('used_places')->unsigned()->nullable();
             $table->Integer('max_places')->unsigned()->nullable();
 
@@ -33,12 +33,6 @@ class CreateLocationsTable extends Migration
             $table->binary('logo')->nullable();
             $table->string('slogan')->nullable();
             $table->string('url')->nullable();
-            // TODO: Add link to googlempas field to framework
-            $table->text('googlemaps_frame')->nullable();
-            $table->decimal('long', 10, 7);
-            $table->decimal('lat', 10, 7);
-
-
             $table->timestamps();
         });
     }

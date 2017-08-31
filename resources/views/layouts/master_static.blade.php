@@ -19,18 +19,18 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!-- Custom styles for this template -->
-    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="css/narrow-jumbotron.css" >
-    <link rel="stylesheet" type="text/css" href="css/loadeffect.css" />
-    <link rel="stylesheet" type="text/css" href="css/pushme.css" />
-    <script src="js/modernizr.custom.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url('/') }}/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="{{ url('/') }}/css/narrow-jumbotron.css" >
+    <link rel="stylesheet" type="text/css" href="{{ url('/') }}/css/loadeffect.css" />
+    <link rel="stylesheet" type="text/css" href="{{ url('/') }}/css/pushme.css" />
+    <script src="{{ url('/') }}/js/modernizr.custom.js"></script>
 
   </head>
 
   <body>
     <div class="container"> <!-- bootstrap container -->
         <div class="logo-show">
-            <img class="img-responsive" src="/img/logo.png" alt="logoPadermeet">
+            <a href="{{url('/')}}"><img class="img-responsive" src="/img/logo.png" alt="logoPadermeet"></a>
         </div>
         @yield('content')
 

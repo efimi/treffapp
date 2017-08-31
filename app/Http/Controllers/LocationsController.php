@@ -58,8 +58,17 @@ class LocationsController extends Controller
         ]);
     }
 
-    public function show(Location $punkt)
+    public function index()
     {
-      return view('locations.show', compact('punkt'));
+        $all = Location::all();
+
+        return view('locations.index', compact('all'));
+    }
+    public function show(Location $location)
+    {
+         $weekdays = array('Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag');
+        $closed = $location->closed_on;
+        $closed_on = $weekdays[$closed];
+      return view('locations.show', compact('location','closed_on'));
     }
 }
