@@ -1,19 +1,9 @@
-@font-face {
-	font-weight: normal;
-	font-style: normal;
-	font-family: 'Blokk';
-	src: url('../fonts/blokk/BLOKKRegular.eot');
-	src: url('../fonts/blokk/BLOKKRegular.eot?#iefix') format('embedded-opentype'),
-		 url('../fonts/blokk/BLOKKRegular.woff') format('woff'),
-		 url('../fonts/blokk/BLOKKRegular.svg#BLOKKRegular') format('svg');
-}
+
 @font-face {
 	font-weight: normal;
 	font-style: normal;
 	font-family: 'chunky';
 	src: url('../fonts/chunk.ttf.eot');
-	src: url('../fonts/chunk.ttf.woff') format('woff'),
-		 url('../fonts/chunk.ttf.svg#BLOKKRegular') format('svg');
 }
 
 @font-face {

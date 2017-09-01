@@ -46,6 +46,8 @@ class LocationsController extends Controller
 
       $loc->fill(['used_places' => $loc->used_places + 1])->save();
 
+      $loc->fill(['map' => view('locations.map', ['location' => $loc])->render()]);
+      $loc->fill(['current' => view('visitors.current', ['location' => $loc])->render()]);
       return response()->json([
             'loc' => $loc
       ]);
@@ -63,6 +65,11 @@ class LocationsController extends Controller
         $all = Location::all();
 
         return view('locations.index', compact('all'));
+    }
+    public function edit()
+    {
+
+        return view('locations.edit');
     }
     public function show(Location $location)
     {

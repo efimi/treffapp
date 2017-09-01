@@ -15,17 +15,16 @@ $(function() {
         console.log(data);
         // hide div
         $('#starttext').delay( 800 ).fadeIn( 400 );
-        $('#database_entry').append($('<p>', {
+        $('#database_entry').append($('<h1>', {
             text: data.loc.name
         }));
 
-        $('#database_entry').append($('<p>', {
+        $('#database_entry').append($('<h3>', {
             text: "Heute um 20:00"
         }));
 
-        $('#database_entry').append($('<div>', {
-            text: data.googlemaps_frame
-        }));
+        $('#database_entry').append(data.loc.map);
+        $('#database_entry').append(data.loc.current);
         // scroll to div
 
 
