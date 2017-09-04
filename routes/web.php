@@ -21,3 +21,5 @@ Route::get('/locations/{location}', 'LocationsController@show');
 
 Route::get('/faq', 'StaticSitesController@faq');
 Route::get('/impressum', 'StaticSitesController@impressum');
+
+Route::get('/chat', 'ChatsController@index');

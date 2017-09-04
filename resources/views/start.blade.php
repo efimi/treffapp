@@ -12,6 +12,9 @@
         scrollTop: $('#database_entry').offset().top
     }, 500);">  <span class="inner">Wir warten auf dich :) </span> </button>
               @else
+                  <form class="" action="" method="post">
+                     <label class="checkbox-inline"><input type="checkbox" value="">Wir kommen zu zweit.</label>
+                  </form>
               <div class="pushme" role="button" id="button">  <span class="inner"> Let's Go! </span> </div>
 
               @endif
