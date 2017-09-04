@@ -22,4 +22,10 @@ Route::get('/locations/{location}', 'LocationsController@show');
 Route::get('/faq', 'StaticSitesController@faq');
 Route::get('/impressum', 'StaticSitesController@impressum');
 
+Route::get('/code', 'CodesController@index');
+Route::post('/code', 'CodesController@codeCheck');
+
+
 Route::get('/chat', 'ChatsController@index');
+
+Route::get('/login', 'HomeController@index');
