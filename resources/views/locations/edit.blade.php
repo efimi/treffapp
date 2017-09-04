@@ -7,7 +7,7 @@
             <h3>Füllen Sie bitte folgendes Anfrageformular aus:</h3>
         </div>
 
-        <form method="post">
+        <form method="POST" action="/locations/edit">
           <div class="form-group">
             <label for="email">Email Addresse</label>
             <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">

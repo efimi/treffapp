@@ -17,6 +17,8 @@ Route::post('/getplace', 'LocationsController@randPlace');
 
 Route::get('/locations', 'LocationsController@index');
 Route::get('/locations/edit', 'LocationsController@edit');
+Route::post('/locations/edit', 'LocationsController@store');
+
 Route::get('/locations/{location}', 'LocationsController@show');
 
 Route::get('/faq', 'StaticSitesController@faq');
