@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+
 use App\Location;
 use Carbon\Carbon;
 
@@ -83,9 +86,26 @@ class LocationsController extends Controller
 
     public function store(Request $request)
     {
-        Location::create([
-
-
+        $this->validate(request(), [
+            'name' => 'required|regex:/([a-zA-ZÄÖÜäöü\s]{0,}^[^0-9]+$)/',
+            'email' => 'required|email',
+            'address' => 'required|regex:/([a-zA-ZÄÖÜäöü\s]{0,}[0-9]+$)/',
         ]);
+
+        if ($request->file('logo')->isValid()) {
+            $file = $request->file('logo');
+            $name = time(). $file->getClientOriginalName();
+            $path = $request->file('logo')->storeAs('logos', $name);
+        }
+
+        Location::create([
+            'is_used' => '0',
+            'name' => $request->name,
+            'address' => $request->address,
+            'email' => $request->email,
+            'closed_on' => $request->closed_on
+        ]);
+
+        return "true";
     }
 }

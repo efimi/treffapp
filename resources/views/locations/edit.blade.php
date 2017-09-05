@@ -7,48 +7,111 @@
             <h3>Füllen Sie bitte folgendes Anfrageformular aus:</h3>
         </div>
 
-        <form method="POST" action="/locations/edit">
-          <div class="form-group">
-            <label for="email">Email Addresse</label>
-            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted">Ihre Emailadresse wird zukünftig als login gelten.</small>
-          </div>
-          <div class="form-group">
-            <label for="password">Passwort</label>
-            <input type="password" class="form-control" id="password" placeholder="Password">
-          </div>
-          <div class="form-group">
-            <label for="closed_on">Ruhetag am</label>
-            <select class="form-control" id="closed_on">
-              <option value="0">Montag</option>
-              <option value="1">Dienstag</option>
-              <option value="2">Mittwoch</option>
-              <option value="3">Donnerstag</option>
-              <option value="4">Freitag</option>
-              <option value="5">Samstag</option>
-              <option value="6">Sonntag</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="address">Addresse</label>
-            <input type="address" class="form-control" id="address" placeholder="Am Kamp 35">
-            <small id="address" class="form-text text-muted">Strasse + Hausnummer in Paderborn.</small>
-          </div>
+        <form id="locations" enctype="multipart/form-data" method="POST" action="/locations/edit">
+            {{ csrf_field() }}
 
-          <div class="form-group">
-            <label for="slogan">Slogan</label>
-            <input type="slogan" class="form-control" id="slogan" placeholder="Bei uns gibts den besten Café...">
-          </div>
+            <div class="form-group">
+                <label for="mail">Name</label>
+                <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="Enter Name">
+                <small id="name" class="form-text text-muted">Der Name des Locals.</small>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Addresse</label>
+                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+                <small id="emailHelp" class="form-text text-muted">Ihre Emailadresse wird zukünftig als login gelten.</small>
+            </div>
+            <div class="form-group">
+                <label for="password">Passwort</label>
+                <input type="password" class="form-control" id="password" name="passwort" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <label for="closed_on">Ruhetag am</label>
+                <select class="form-control" id="closed_on" name="closed_on">
+                    <option value="0">Montag</option>
+                    <option value="1">Dienstag</option>
+                    <option value="2">Mittwoch</option>
+                    <option value="3">Donnerstag</option>
+                    <option value="4">Freitag</option>
+                    <option value="5">Samstag</option>
+                    <option value="6">Sonntag</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="address">Addresse</label>
+                <input type="text" class="form-control" id="address" name="address" placeholder="Am Kamp 35">
+                <small id="address" class="form-text text-muted">Strasse + Hausnummer in Paderborn.</small>
+            </div>
 
-          <div class="form-group">
-            <label for="logo">Logo</label>
-            <input type="file" class="form-control-file" id="logo" aria-describedby="fileHelp">
-            <small id="fileHelp" class="form-text text-muted">Laden sie ihr Logo hoch. Unterstützte Formate: .jpg, .png.</small>
-          </div>
+            <div class="form-group">
+                <label for="slogan">Slogan</label>
+                <input type="text" class="form-control" id="slogan" name="slogan" placeholder="Bei uns gibts den besten Café...">
+            </div>
 
-          <button type="submit" class="btn btn-primary">Ich will mitmachen</button>
+
+            <div class="form-group">
+                <label for="logo">Logo</label>
+                <input type="file" name="logo" id="file"/>
+                <small id="fileHelp" class="form-text text-muted">Laden sie ihr Logo hoch. Unterstützte Formate: .jpg, .png.</small>
+                <div id="image_preview"><img class="img-responsive"  style="margin:auto !important;" id="previewing" src=""/></div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Ich will mitmachen</button>
         </form>
 
+        <br>
+        <div class="hidden bg-success well-lg col-md-12" id="alert"></div>
     </div>
+    <script>
+        $(document).ready(function () {
+            $("#locations").on('submit', (function (e) {
+                e.preventDefault();
+                $.ajax({
+                    // AJAX übermittlungstyp
+                    type: "POST",
+                    // Angesprochene Datei
+                    url: "/locations/edit",
+                    // Die Daten die per POST an die angegebene Datei übermittelt werden sollen
+                    data: new FormData(this),
+                    contentType: false,       // The content type used when sending data to the server.
+                    cache: false,             // To unable request pages to be cached
+                    processData: false,        // To send DOMDocument or non processed data file it is set to false
+
+                    // Bei Erfolg auszuführende Function
+                    success: function (msg) {
+                    $('#alert').html('Ihre Anmeldung war Erfolgreich!').toggleClass('hidden');
+                    $('input.form-control').attr('disabled','disabled');
+                    $('button.btn').attr('disabled','disabled');
+                    $('select.form-control').attr('disabled','disabled');
+                    }
+                });
+            }));
+
+
+            // Function um eine Preview des Bildes zu ermöglichen
+            $(function () {
+                $("#file").change(function () {
+                    var file = this.files[0];
+                    var imagefile = file.type;
+                    var match = ["image/jpeg", "image/png", "image/jpg"];
+                    if (!((imagefile == match[0]) || (imagefile == match[1]) || (imagefile == match[2]))) {
+                        $('#previewing').attr('src', 'noimage.png');
+                        return false;
+                    }
+                    else {
+                        var reader = new FileReader();
+                        reader.onload = imageIsLoaded;
+                        reader.readAsDataURL(this.files[0]);
+                    }
+                });
+            });
+
+            function imageIsLoaded(e) {
+                $("#file").css("color", "green");
+                $('#image_preview').css({"display": "block", "opacity": "1"});
+                // $('#previewing').attr('src', e.target.result);
+                $('#previewing').attr({"width": "250px", "height": "230px", "src": e.target.result});
+            }
+        });
+    </script>
 
 @endsection

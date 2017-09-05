@@ -24,7 +24,7 @@ class CreateLocationsTable extends Migration
             $table->string('email',100)->nullable();
             $table->string('password')->nullable();
             $table->Integer('used_places')->unsigned()->nullable();
-            $table->Integer('max_places')->unsigned()->nullable();
+            $table->Integer('max_places')->unsigned()->default(4);
 
             $table->integer('closed_on')->nullable();
             $table->time('open_from')->nullable();
