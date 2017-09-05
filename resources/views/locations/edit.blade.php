@@ -61,6 +61,6 @@
         <br>
         <div class="hidden bg-success well-lg col-md-12" id="alert"></div>
     </div>
-
+    <script src="/js/pictureupload.js"></script>
 
 @endsection
