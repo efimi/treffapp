@@ -30,7 +30,7 @@ class CreateLocationsTable extends Migration
             $table->time('open_from')->nullable();
             $table->time('open_till')->nullable();
 
-            $table->string('logo_path')->default('example.png');
+            $table->string('logo_path')->default('logos/example.png');
             $table->string('slogan')->nullable();
             $table->string('url')->nullable();
             $table->timestamps();

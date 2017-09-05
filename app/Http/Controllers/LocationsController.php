@@ -27,14 +27,13 @@ class LocationsController extends Controller
 
     public function randPlace(Request $request)
     {
-        if($request->together){
+        if ($request->together) {
             $used_exist = Location::where('is_used', true)->whereRaw('used_places <= max_places - 2')->first();
 
-            if($used_exist!=NULL){
+            if ($used_exist != null) {
                 $loc = $used_exist;
 
-            }
-            else {
+            } else {
                 $loc = Location::getNewRandom();
                 $loc->fill(['is_used' => 1])->save();
             }
@@ -46,17 +45,15 @@ class LocationsController extends Controller
             session()->put('location', $loc->id);
 
             $loc->fill(['used_places' => $loc->used_places + 2])->save();
-        }
-        else {
+        } else {
             $used_exist = Location::where('is_used', true)->whereRaw('used_places <= max_places - 1')->first();
             // TODO: All locations used if no one more free
             // TODO: Log all used in LogBook Table
 
-            if($used_exist!=NULL){
+            if ($used_exist != null) {
                 $loc = $used_exist;
 
-            }
-            else {
+            } else {
                 $loc = Location::getNewRandom();
                 $loc->fill(['is_used' => 1])->save();
             }
@@ -117,17 +114,21 @@ class LocationsController extends Controller
 
         if ($request->file('logo')->isValid()) {
             $file = $request->file('logo');
-            $name = time(). $file->getClientOriginalName();
+            $name = time() . $file->getClientOriginalName();
             $path = $request->file('logo')->storeAs('logos', $name);
         }
-
-        Location::create([
+        dd($path);
+        $loc = Location::create([
             'is_used' => '0',
             'name' => $request->name,
             'address' => $request->address,
             'email' => $request->email,
             'closed_on' => $request->closed_on
         ]);
+        if (isset($path)) {
+            $loc->logo_path = $path;
+            }
+
 
         return "true";
     }
