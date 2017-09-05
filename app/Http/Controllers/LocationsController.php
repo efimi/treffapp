@@ -22,29 +22,51 @@ class LocationsController extends Controller
       return view('start', compact('location','today'));
     }
 
-    public function randPlace()
+    public function randPlace(Request $request)
     {
+        if($request->together){
+            $used_exist = Location::where('is_used', true)->whereRaw('used_places <= max_places - 2')->first();
+
+            if($used_exist!=NULL){
+                $loc = $used_exist;
+
+            }
+            else {
+                $loc = Location::getNewRandom();
+                $loc->fill(['is_used' => 1])->save();
+            }
+
+            // TODO: Increment $loc used_places
+            // TODO: save #loc and Session ID form Visitor
 
 
-      $used_exist = Location::where('is_used', true)->where('used_places','<=','3')->first();
-      // TODO: All locations used if no one more free
-      // TODO: Log all used in LogBook Table
+            session()->put('location', $loc->id);
 
-      if($used_exist!=NULL){
-          $loc = $used_exist;
+            $loc->fill(['used_places' => $loc->used_places + 2])->save();
+        }
+        else {
+            $used_exist = Location::where('is_used', true)->whereRaw('used_places <= max_places - 1')->first();
+            // TODO: All locations used if no one more free
+            // TODO: Log all used in LogBook Table
 
-      }
-      else {
-          $loc = Location::getNewRandom();
-          $loc->fill(['is_used' => 1])->save();
-      }
+            if($used_exist!=NULL){
+                $loc = $used_exist;
 
-      // TODO: Increment $loc used_places
-      // TODO: save #loc and Session ID form Visitor
+            }
+            else {
+                $loc = Location::getNewRandom();
+                $loc->fill(['is_used' => 1])->save();
+            }
 
-      session()->put('location', $loc->id);
+            // TODO: Increment $loc used_places
+            // TODO: save #loc and Session ID form Visitor
 
-      $loc->fill(['used_places' => $loc->used_places + 1])->save();
+
+            session()->put('location', $loc->id);
+
+            $loc->fill(['used_places' => $loc->used_places + 1])->save();
+        }
+
 
       $loc->fill(['map' => view('locations.map', ['location' => $loc])->render()]);
       $loc->fill(['current' => view('visitors.current', ['location' => $loc])->render()]);

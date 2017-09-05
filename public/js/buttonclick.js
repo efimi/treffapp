@@ -10,7 +10,7 @@ $(function() {
     $.ajax({
       url: 'getplace',
       method: 'post',
-      data: {'_token': $('meta[name=token]').attr("content"),},
+      data: {'_token': $('meta[name=token]').attr("content"), 'together': $('#together').is(':checked'),},
       success: function (data) {
         console.log(data);
         // hide div
@@ -26,6 +26,7 @@ $(function() {
         $('#database_entry').append(data.loc.map);
         $('#database_entry').append(data.loc.current);
         // scroll to div
+        $('#together').attr('disabled','disabled');
 
 
       },
