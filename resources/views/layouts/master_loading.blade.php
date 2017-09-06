@@ -6,7 +6,6 @@
 
   <body>
       <div id="ip-container" class="ip-container">
-          <!-- initial header -->
           <header class="ip-header">
               <h1 class="ip-logo">
                   <svg class="ip-inner" width="100%" height="100%" viewBox="0 0 300 160" preserveAspectRatio="xMidYMin meet" aria-labelledby="logo_title">
