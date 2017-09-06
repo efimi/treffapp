@@ -12,6 +12,10 @@ use Carbon\Carbon;
 class LocationsController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('auth')->except('faq');
+    }
 
     public function start()
     {

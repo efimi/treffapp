@@ -30,4 +30,5 @@ Route::post('/code', 'CodesController@codeCheck');
 
 Route::get('/chat', 'ChatsController@index');
 
-Route::get('/login', 'HomeController@index');
+Auth::routes();
+Route::get('/home', 'LocationsController@index');

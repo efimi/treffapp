@@ -22,7 +22,9 @@
             </header>
 
               <div class="ip-main">
+
                   <div class="container"> <!-- bootstrap container -->
+                      @include('layouts.login_nav')
                      @include('layouts.logo')
 
                      @yield('content')
