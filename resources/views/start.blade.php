@@ -38,17 +38,5 @@
     </div>
     @if(!$location)
         <script src="js/buttonclick.js"></script>
-    @else
-        <script>
-            if ($("#framemap").length) {
-                var timeout = setTimeout(showPage, 5000);
-            }
-
-            function showPage() {
-                $("#loader").remove();
-                $("#framemap").toggleClass('hidden');
-            }
-
-        </script>
     @endif
 @endsection
