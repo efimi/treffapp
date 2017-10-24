@@ -50,9 +50,10 @@ class LoginController extends Controller
     {
         try {
             $user = Socialite::driver('facebook')->user();
+            dd($user);
         } catch (Exception $e) {
             return redirect('auth/facebook');
-        } 
+        }
         $authUser = $this->findOrCreateUser($user);
 
         Auth::login($authUser, true);
