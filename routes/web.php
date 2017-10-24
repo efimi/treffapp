@@ -32,3 +32,6 @@ Route::get('/chat', 'ChatsController@index');
 
 Auth::routes();
 Route::get('/home', 'LocationsController@index');
+
+Route::get('auth/facebook', ['as' => 'auth/facebook', 'uses' => 'Auth\LoginController@redirectToProvider']);
+Route::get('auth/facebook/callback', [ 'as' => 'auth/facebook/callback','Auth\LoginController@handleProviderCallback']);
