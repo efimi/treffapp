@@ -53,7 +53,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     einloggen
                                 </button>
-                                <a class="btn btn-info"href="{{ URL::route('auth/facebook')}}">Loging with facebook</a>
+                                <a class="btn btn-info"href="{{ route('auth/facebook')}}">Loging with facebook</a>
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     Passwort vergessen?
                                 </a>
