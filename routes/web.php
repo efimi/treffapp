@@ -34,4 +34,4 @@ Auth::routes();
 Route::get('/home', 'LocationsController@index')->name('home');
 
 Route::get('auth/facebook', ['as' => 'auth/facebook', 'uses' => 'Auth\LoginController@redirectToProvider']);
-Route::get('auth/facebook/callback', [ 'as' => 'auth/facebook/callback','Auth\LoginController@handleProviderCallback']);
+Route::get('auth/facebook/callback', [ 'as' => 'auth/facebook/callback', 'uses' => 'Auth\LoginController@handleProviderCallback']);
