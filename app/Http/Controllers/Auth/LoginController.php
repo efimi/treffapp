@@ -50,7 +50,7 @@ class LoginController extends Controller
     {
 
         try {
-            $user = Socialite::driver('facebook')->asPopup()->user();
+            $user = Socialite::driver('facebook')->user();
 
         } catch (Exception $e) {
             return redirect('auth/facebook');
