@@ -64,7 +64,6 @@ class LoginController extends Controller
 
     private function findOrCreateUser($facebookUser)
     {
-        dd($facebookUser);
         $authUser = User::where('facebook_id', $facebookUser->id)->first();
 
         if ($authUser){
