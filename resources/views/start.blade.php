@@ -15,7 +15,7 @@
                   <form class="" action="" method="post">
                      <label class="checkbox-inline" ><input type="checkbox" id="together">Wir kommen zu zweit.</label>
                   </form>
-              <div class="pushme" role="button" id="button">  <span class="inner"> Let's Go! </span> </div>
+              <div class="btn" role="button" id="button">  <span class="inner"> Let's Go! </span> </div>
 
               @endif
         </p>
