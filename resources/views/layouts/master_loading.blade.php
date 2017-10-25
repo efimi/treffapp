@@ -12,7 +12,15 @@
                   <svg class="ip-inner" width="100%" height="100%" viewBox="0 0 300 160" preserveAspectRatio="xMidYMin meet" aria-labelledby="logo_title">
                       <title id="logo_title">PaderMeet - Lerne neue Leute kennen.</title>
                             @include('layouts.logopath')
+
                     </svg>
+                  <div class="ip-inner">
+                      @if (Auth::guest())
+                      @else
+                          Hallo {{ Auth::user()->name }}!
+                      @endif
+                  </div>
+
                 </h1>
                     <div class="ip-loader">
                       <svg class="ip-inner" width="60px" height="60px" viewBox="0 0 80 80">
@@ -26,7 +34,6 @@
 
                   <div class="container"> <!-- bootstrap container -->
                       @include('layouts.login_nav')
-                     @include('layouts.logo')
 
                      @yield('content')
 
