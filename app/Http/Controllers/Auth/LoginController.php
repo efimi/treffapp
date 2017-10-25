@@ -69,7 +69,7 @@ class LoginController extends Controller
         if ($authUser){
             return $authUser;
         }
-        $faker = Faker\Factory::create('de_DE');
+
 
 
         return User::create([
@@ -77,7 +77,7 @@ class LoginController extends Controller
             'facebook_id' => $facebookUser->id,
             'avatar' => $facebookUser->avatar,
             'email' => $facebookUser->email,
-            'password' => $faker->word,
+            'password' => bcrypt('secret'),
         ]);
     }
 
