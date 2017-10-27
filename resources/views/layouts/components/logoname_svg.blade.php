@@ -1,5 +1,4 @@
-@if (Auth::guest())
-@else
+@if (Auth::check())
     <text
        id="text4807"
        y=""

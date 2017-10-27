@@ -1,40 +1,34 @@
+<nav class="">
+    <div class="container">
+            <ul class="navbar-right text-right">
+                <!-- Authentication Links -->
+                @if (Auth::guest())
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Login</button>
+                    {{-- <li><a href="{{ route('login') }}">Login</a></li>
+                    <li><a href="{{ route('register') }}">Register</a></li> --}}
+                @else
 
+                        <a href="#" class="btn "role="button" aria-expanded="ture">
+                            {{ Auth::user()->name }}
+                        </a>
+                        {{-- <ul class="dropdown-menu" role="menu">
+                            <li>
 
+                            </li>
+                        </ul> --}}
+                        <br>
+                        <a class="btn btn-info"href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            Logout
+                        </a>
 
-    @if (Auth::guest())
-    {{-- <li class="nav-item">
-      <a class="nav-link" href="/login">Login</a>
-    </li> --}}
-    @else
-      <div class="header clearfix">
-        <nav>
-        <ul class="nav nav-pills float-right">
-          <li class="nav-item">
-            <a class="nav-link" href="/">Treffpunkte bearbeiten</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/spieler">Treffpunkte anzeigenlassen</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link" href="/table">Aktuelle Statistik</a>
-          </li>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                @endif
+            </ul>
+            @include('layouts.logo')
+        </div>
 
-      <li class="nav-item">
-            <a class="nav-link" href="{{ route('logout') }}"
-               onclick="event.preventDefault();
-                 document.getElementById('logout-form').submit();">
-              Logout
-            </a>
+    </div>
 
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-              {{ csrf_field() }}
-            </form>
-          </li>
-    @endif
-
-
-
-  </ul>
-{{-- </nav>
-    <h3 class="text-muted hidden-xs hidden-sm"><a href="/" class="nav-link hidden-xs hidden-sm">Badminton Planing Tool</a></h3>
-</div> --}}
+</nav>

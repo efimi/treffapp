@@ -48,8 +48,7 @@
     </g>
   </g>
 </g>
-@if (Auth::guest())
-@else
+@if (Auth::check())
     <text
         transform="translate(-247.22959,-143.81447)"
        id="text4807"

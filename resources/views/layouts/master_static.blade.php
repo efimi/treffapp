@@ -6,7 +6,7 @@
   </head>
 
   <body>
-      @include('layouts.login_nav')
+      @include('layouts.nav')
     <div class="container"> <!-- bootstrap container -->
 
         @yield('content')
