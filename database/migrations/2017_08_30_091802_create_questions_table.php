@@ -19,7 +19,6 @@ class CreateQuestionsTable extends Migration
             $table->text('body')->nullable();
             $table->text('answer_head')->nullable();
             $table->text('answer_body')->nullable();
-
             $table->timestamps();
         });
     }
@@ -32,7 +31,7 @@ class CreateQuestionsTable extends Migration
     public function down()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-        Schema::dropIfExists('questions');
+        Schema::dropIfExists('question');
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

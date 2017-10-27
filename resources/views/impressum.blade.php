@@ -3,7 +3,7 @@
 @section('content')
   <div class="text">
      <h1>Impressum</h1>
-     <h2>Angaben gem&auml;&szlig; &sect; 5 TMG:</h2> <p>Reinhold Lehnahrdt<br /> Padermeet<br /> K&ouml;nigstrasse 66<br /> 33098 Paderborn </p> <h2>Kontakt:</h2> <table> <tr><td>Telefon:</td><td>+49 (0) 176 4764 1882</td></tr> <tr><td>Telefax:</td><td>+49 (0) 123 44 55 99</td></tr> <tr><td>E-Mail:</td> <td>info@padermeet.de</td> </tr></table> <p>Umsatzsteuer- Identifikationsnummer gem&auml;&szlig; &sect;27 a Umsatzsteuergesetz:<br /> DE 999 999 999</p>
+     <h2>Angaben gem&auml;&szlig; &sect; 5 TMG:</h2> <p>Reinhold Lehnahrdt<br /> Padermeet<br /> K&ouml;nigstrasse 66<br /> 33098 Paderborn </p> <h2>Kontakt:</h2> <table> <tr><td>Telefon:</td><td>+49 (0) 176 4764 1882</td></tr> <tr><td>E-Mail:</td> <td>info@padermeet.de</td> </tr></table> <p>Umsatzsteuer- Identifikationsnummer gem&auml;&szlig; &sect;27 a Umsatzsteuergesetz:<br /> DE 999 999 999</p>
 
      <h2>Aufsichtsbeh&ouml;rde:</h2>
      <p>Landratsamt Musterstadt</p>

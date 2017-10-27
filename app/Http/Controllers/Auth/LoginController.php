@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Auth;
+use Socialite;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -25,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -36,4 +39,53 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    //Facebooklogin //////////////////// ->
+    public function redirectToProvider()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    public function handleProviderCallback()
+    {
+
+        try {
+            $user = Socialite::driver('facebook')->user();
+
+        } catch (Exception $e) {
+            return redirect('auth/facebook');
+        }
+        $authUser = $this->findOrCreateUser($user);
+
+        Auth::login($authUser, true);
+
+        return redirect('/');
+    }
+
+    private function findOrCreateUser($facebookUser)
+    {
+        $authUser = User::where('facebook_id', $facebookUser->id)->first();
+
+        if ($authUser){
+            return $authUser;
+        }
+
+
+        $newUser = new User;
+        $newUser->name = $facebookUser->name;
+        $newUser->facebook_id = $facebookUser->id;
+        $newUser->email = $facebookUser->email;
+        $newUser->avatar = $facebookUser->avatar;
+        $newUser->password = bcrypt('secret');
+
+        return $newUser->save();
+        // return User::create([
+        //     'name' => $facebookUser->name,
+        //     'facebook_id' => $facebookUser->id,
+        //     'avatar' => $facebookUser->avatar,
+        //     'email' => $facebookUser->email,
+        //     'password' => bcrypt('secret'),
+        // ]);
+    }
+
 }

@@ -10,12 +10,12 @@
             @if($location)
                 <button class="btn btn-primary" role="button" id="button" onclick="$('html, body').animate({
         scrollTop: $('#database_entry').offset().top
-    }, 500);"><span>Wir warten auf dich :) </span></button>
-        @else
-            <form class="" action="" method="post">
-                <label class="checkbox-inline"><input type="checkbox" id="together">Wir kommen zu zweit.</label>
-            </form>
-            <div role="button" class="btn btn-primary" id="button"><span> Let's Go! </span></div>
+    }, 500);">  <span class="inner">Wir warten auf dich :) </span> </button>
+              @else
+                  <form class="" action="" method="post">
+                     <label class="checkbox-inline" ><input type="checkbox" id="together">Wir kommen zu zweit.</label>
+                  </form>
+              <div class="btn" role="button" id="button">  <span class="inner"> Let's Go! </span> </div>
 
             @endif
             </p>

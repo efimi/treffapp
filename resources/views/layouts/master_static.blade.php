@@ -8,7 +8,6 @@
   <body>
       @include('layouts.login_nav')
     <div class="container"> <!-- bootstrap container -->
-        @include('layouts.logo')
 
         @yield('content')
 
