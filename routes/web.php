@@ -37,5 +37,4 @@ Route::get('auth/facebook', ['as' => 'auth/facebook', 'uses' => 'Auth\LoginContr
 Route::get('auth/facebook/callback', [ 'as' => 'auth/facebook/callback', 'uses' => 'Auth\LoginController@handleProviderCallback']);
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
