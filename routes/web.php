@@ -11,30 +11,21 @@
 |
 */
 use App\Location;
+Auth::routes();
 
+// LocationsController Routes
 Route::get('/', 'LocationsController@start');
 Route::post('/getplace', 'LocationsController@randPlace');
-
 Route::get('/locations', 'LocationsController@index');
 Route::get('/locations/edit', 'LocationsController@edit');
 Route::post('/locations/edit', 'LocationsController@store');
+Route::get('/location/{location}', 'LocationsController@show');
+Route::get('/home', 'LocationsController@start')->name('home');
 
-Route::get('/locations/{location}', 'LocationsController@show');
-
+// StaticSitesController Routes
 Route::get('/faq', 'StaticSitesController@faq');
 Route::get('/impressum', 'StaticSitesController@impressum');
 
-// Route::get('/code', 'CodesController@index');
-// Route::post('/code', 'CodesController@codeCheck');
-
-
-// Route::get('/chat', 'ChatsController@index');
-
-Auth::routes();
-Route::get('/home', 'LocationsController@index')->name('home');
-
+// LoginController Routes
 Route::get('auth/facebook', ['as' => 'auth/facebook', 'uses' => 'Auth\LoginController@redirectToProvider']);
 Route::get('auth/facebook/callback', [ 'as' => 'auth/facebook/callback', 'uses' => 'Auth\LoginController@handleProviderCallback']);
-
-Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');

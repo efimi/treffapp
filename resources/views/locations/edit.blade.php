@@ -41,20 +41,16 @@
                 <input type="text" class="form-control" id="address" name="address" placeholder="Am Kamp 35">
                 <small id="address" class="form-text text-muted">Strasse + Hausnummer in Paderborn.</small>
             </div>
-
             <div class="form-group">
                 <label for="slogan">Slogan</label>
                 <input type="text" class="form-control" id="slogan" name="slogan" placeholder="Bei uns gibts den besten Café...">
             </div>
-
-
             <div class="form-group">
                 <label for="logo">Logo</label>
                 <input type="file" name="logo" id="file"/>
                 <small id="fileHelp" class="form-text text-muted">Laden sie ihr Logo hoch. Unterstützte Formate: .jpg, .png.</small>
                 <div id="image_preview"><img class="img-responsive"  style="margin:auto !important;" id="previewing" src=""/></div>
             </div>
-
             <button type="submit" class="btn btn-primary">Ich will mitmachen</button>
         </form>
 
@@ -62,5 +58,4 @@
         <div class="hidden bg-success well-lg col-md-12" id="alert"></div>
     </div>
     <script src="/js/pictureupload.js"></script>
-
 @endsection

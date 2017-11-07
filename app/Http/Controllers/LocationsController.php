@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\File;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Authenticatable;
@@ -15,7 +16,7 @@ class LocationsController extends Controller
     //
     public function __construct()
     {
-        $this->middleware('auth')->except('faq');
+        $this->middleware('auth')->except('index', 'show');
     }
 
     public function start()
@@ -24,63 +25,92 @@ class LocationsController extends Controller
         Carbon::setLocale('de');
         $today = Carbon::now()->formatLocalized('%A %d %B %Y');
         $location = null;
-        if (session()->get('location') != null) {
-            $location = Location::find(session()->get('location'));
-        }
-
+//        $location = Location::find(session()->get('location'));
         return view('start', compact('location', 'today'));
     }
 
+//    public function randPlace(Request $request)
+//    {
+//        if(!empty(Location::where('is_used', '=', 0)->get()->first())) {
+//            if ($request->together == "true") {
+//                $used_exist = Location::where('is_used', '=', 1)
+//                    ->whereRaw('used_places <= max_places - 2')
+//                    ->orderBy('used_places', 'DESC')
+//                    ->get()->first();
+//
+//                if ($used_exist != null) {
+//                    $loc = $used_exist;
+//
+//                } else {
+//                    $loc = Location::getNewRandom();
+//                    $loc->fill(['is_used' => 1])->save();
+//                }
+//
+//                session()->put('location', $loc->id);
+//                $loc->fill(['used_places' => $loc->used_places + 2])->save();
+//            } else {
+//                $used_exist = Location::where('is_used', '=', 1)->whereRaw('used_places < max_places ')->orderBy('used_places', 'DESC')->get()->first();
+//
+//                // TODO: All locations used if no one more free
+//                // TODO: Log all used in LogBook Table
+//
+//                if ($used_exist != null) {
+//                    $loc = $used_exist;
+//
+//                } else {
+//                    $loc = Location::getNewRandom();
+//                    $loc->fill(['is_used' => 1])->save();
+//                }
+//
+//                session()->put('location', $loc->id);
+//                $loc->fill(['used_places' => $loc->used_places + 1])->save();
+//            }
+//
+//        }else{
+//            $loc = Location::where('is_used', '=', 1)->orderBy('used_places', 'ASC')->get()->first();
+//            if ($request->together == "true") {
+//                session()->put('location', $loc->id);
+//                $loc->fill(['used_places' => $loc->used_places + 2])->save();
+//            }else{
+//                session()->put('location', $loc->id);
+//                $loc->fill(['used_places' => $loc->used_places + 1])->save();
+//            }
+//
+//        }
+//        $loc->fill(['map' => view('locations.map', ['location' => $loc])->render()]);
+//        $loc->fill(['current' => view('visitors.current', ['location' => $loc])->render()]);
+//        return response()->json([
+//            'loc' => $loc
+//        ]);
+//    }
+
     public function randPlace(Request $request)
     {
-        if(!empty(Location::where('is_used', '=', 0)->get()->first())) {
-            if ($request->together == "true") {
-                $used_exist = Location::where('is_used', '=', 1)->whereRaw('used_places <= max_places - 2')->orderBy('used_places', 'DESC')->get()->first();
 
-                if ($used_exist != null) {
-                    $loc = $used_exist;
-
-                } else {
-                    $loc = Location::getNewRandom();
-                    $loc->fill(['is_used' => 1])->save();
-                }
-
-                session()->put('location', $loc->id);
-                $loc->fill(['used_places' => $loc->used_places + 2])->save();
-            } else {
-                $used_exist = Location::where('is_used', '=', 1)->whereRaw('used_places < max_places ')->orderBy('used_places', 'DESC')->get()->first();
-
-                // TODO: All locations used if no one more free
-                // TODO: Log all used in LogBook Table
-
-                if ($used_exist != null) {
-                    $loc = $used_exist;
-
-                } else {
-                    $loc = Location::getNewRandom();
-                    $loc->fill(['is_used' => 1])->save();
-                }
-
-                session()->put('location', $loc->id);
-                $loc->fill(['used_places' => $loc->used_places + 1])->save();
-            }
-
-        }else{
-            $loc = Location::where('is_used', '=', 1)->orderBy('used_places', 'ASC')->get()->first();
-            if ($request->together == "true") {
-                session()->put('location', $loc->id);
-                $loc->fill(['used_places' => $loc->used_places + 2])->save();
-            }else{
-                session()->put('location', $loc->id);
-                $loc->fill(['used_places' => $loc->used_places + 1])->save();
-            }
-
+        switch ($request->together) {
+            case "true":
+                $amount = 2;
+                break;
+            default:
+            case "false":
+                $amount = 1;
+                break;
         }
-        $loc->fill(['map' => view('locations.map', ['location' => $loc])->render()]);
-        $loc->fill(['current' => view('visitors.current', ['location' => $loc])->render()]);
-        return response()->json([
-            'loc' => $loc
-        ]);
+        $location = Location::getPossibleLocations($amount);
+        if (!empty($location)) {
+            $user = Auth::user();
+            if ($user->last_click != Carbon::now()->toDateString()) {
+                $user->last_click = Carbon::now()->toDateString();
+                $user->location_id = $location->id;
+                $location->used_places += $amount;
+                if ($location->save()) {
+                    if ($user->save()) {
+                        return view('visitors.current', compact('location'));
+                    }
+                }
+            }
+        }
+        return "false";
     }
 
     public function myplace()
@@ -93,7 +123,6 @@ class LocationsController extends Controller
     public function index()
     {
         $all = Location::all();
-
         return view('locations.index', compact('all'));
     }
 

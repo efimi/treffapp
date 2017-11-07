@@ -1,10 +1,7 @@
-<div id="current_matched">
-   <br>
-  @if ($location->used_places == 2)
-          <p>Du bist nicht alleine!!:) Derzeit kommt noch eine weitere Person</p>
-      @elseif ($location->used_places == 1)
-
-      @else
-          <p>Derzeit kommen noch {{ ($location->used_places)-1 }} weitere Personen</p>
-  @endif
+<div class="container">
+    <h1>{{ $location->name }}</h1>
+    <h3>Heute 20:00</h3>
+    <br>
+    @include('locations.map', $location)
+    <p> Derzeit kommen noch {{ $location->used_places-1 }} weitere Person/en zu deiner Location! :) </p>
 </div>
