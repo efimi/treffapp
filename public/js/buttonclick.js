@@ -9,7 +9,7 @@ $(document).ready(function () {
         $('#database_entry').hide();
         var amount = $('#together').is(':checked');
         $.ajax({
-            url: 'getplace',
+            url: '/getplace',
             method: 'POST',
             data: {'_token': $('meta[name=token]').attr("content"), 'together': amount},
             success: function (data) {
