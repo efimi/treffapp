@@ -5,9 +5,7 @@
      id="g4292">
     <g
        id="g5116">
-
-      {{--  entferntes <g> --}}
-
+       
         <g
            id="text3336"
            style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:40px;line-height:125%;font-family:chunky;-inkscape-font-specification:'chunky, Medium';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"

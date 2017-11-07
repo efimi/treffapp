@@ -1,11 +1,11 @@
-@extends('layouts.master_loading')
+@extends('layouts.master_static')
 
 @section('content')
 
     <div class="jumbotron no-margin no-padding-bottom">
+        <p>Heute ist {{ $today }}</p>
         <p class="lead">Drücke auf den Button</p>
         <p class="lead">und finde heraus wo es heute für dich hingeht</p>
-
         <p>
             @if($location)
                 <button class="btn btn-primary" role="button" id="button" onclick="$('html, body').animate({
@@ -15,7 +15,7 @@
                   <form class="" action="" method="post">
                      <label class="checkbox-inline" ><input type="checkbox" id="together">Wir kommen zu zweit.</label>
                   </form>
-              <div class="btn" role="button" id="button">  <span class="inner"> Let's Go! </span> </div>
+              <div class="btn btn-primary" role="button" id="button">  <span class="inner"> Let's Go! </span> </div>
 
             @endif
             </p>

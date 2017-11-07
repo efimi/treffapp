@@ -26,7 +26,7 @@
                         </form>
                 @endif
             </ul>
-            @include('layouts.logo')
+            @include('layouts.components.logo')
         </div>
 
     </div>

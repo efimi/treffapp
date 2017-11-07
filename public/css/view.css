@@ -1,3 +1,11 @@
+@font-face {
+    font-family: 'chunky';
+             src: url('fonts/chunky.ttf') format('truetype');
+             src: url('fonts/chunky.svg') format('svg');
+             src: url('fonts/chunky.ttf') format('truetype');
+             src: url('fonts/chunky.ttf') format('truetype');
+}
+
 .no-margin {
     margin: 0px !important;
 }

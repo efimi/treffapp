@@ -318,10 +318,7 @@ class ComposerStaticInit9af31fc39bea5df8e921d62f7094aa04
     );
 
     public static $classMap = array (
-        'App\\Chat' => __DIR__ . '/../..' . '/app/Chat.php',
-        'App\\Code' => __DIR__ . '/../..' . '/app/Code.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
-        'App\\Event' => __DIR__ . '/../..' . '/app/Event.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
@@ -347,7 +344,6 @@ class ComposerStaticInit9af31fc39bea5df8e921d62f7094aa04
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
-        'App\\Question' => __DIR__ . '/../..' . '/app/Question.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'App\\Visitor' => __DIR__ . '/../..' . '/app/Visitor.php',
         'BaconQrCode\\Common\\AbstractEnum' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Common/AbstractEnum.php',
