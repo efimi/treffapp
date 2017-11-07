@@ -5,7 +5,7 @@ $(document).ready(function () {
 
         var btn = $(this);
         btn.children().text('Deine Location wird gesucht:');
-        btn.attr('disabled', 'disabled');
+        // btn.attr('disabled', 'disabled');
         $('#database_entry').hide();
         var amount = $('#together').is(':checked');
         $.ajax({
