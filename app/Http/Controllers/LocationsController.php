@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Auth\Authenticatable;
 
 use App\Location;
 use Carbon\Carbon;
