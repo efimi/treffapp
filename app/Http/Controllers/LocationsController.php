@@ -21,8 +21,7 @@ class LocationsController extends Controller
 
     public function start()
     {
-        // TODO: Deutsch geht nicht
-        Carbon::setLocale('de');
+
         $today = Carbon::now()->formatLocalized('%A %d %B %Y');
         $location = null;
         return view('start', compact('location', 'today'));
