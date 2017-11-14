@@ -16,9 +16,12 @@ class Welcome extends Mailable
      *
      * @return void
      */
-    public function __construct()
+
+    public $location;
+
+    public function __construct($location)
     {
-        //
+        $this->location = $location;
     }
 
     /**
@@ -28,6 +31,6 @@ class Welcome extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->view('mail.reservation')->subject('Hier steht mein Betreff!');
     }
 }

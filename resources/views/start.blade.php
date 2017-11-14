@@ -26,4 +26,4 @@
     @if(!$location)
         <script src="js/buttonclick.js"></script>
     @endif
-@endsection
+@endsection#
