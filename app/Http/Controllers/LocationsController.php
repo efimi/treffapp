@@ -23,7 +23,7 @@ class LocationsController extends Controller
 
     public function start()
     {
-        Carbon::setlocale(LC_TIME, 'de_De');
+        setlocale(LC_TIME, 'German');
         $today = Carbon::now()->formatLocalized('%A %d %B %Y');
         $location = null;
         return view('start', compact('location', 'today'));
