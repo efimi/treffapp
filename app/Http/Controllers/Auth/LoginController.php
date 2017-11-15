@@ -72,21 +72,14 @@ class LoginController extends Controller
         }
 
 
-        $newUser = new User;
-        $newUser->name = $facebookUser->name;
-        $newUser->facebook_id = $facebookUser->id;
-        $newUser->email = $facebookUser->email;
-        $newUser->avatar = $facebookUser->avatar;
-        $newUser->password = bcrypt('secret');
-        $newUser->save();
+        $newUser = User::create([
+            'name' => $facebookUser->name,
+            'facebook_id' => $facebookUser->id,
+            'avatar' => $facebookUser->avatar,
+            'email' => $facebookUser->email,
+            'password' => bcrypt('secret'),
+        ]);
         return $newUser;
-        // return User::create([
-        //     'name' => $facebookUser->name,
-        //     'facebook_id' => $facebookUser->id,
-        //     'avatar' => $facebookUser->avatar,
-        //     'email' => $facebookUser->email,
-        //     'password' => bcrypt('secret'),
-        // ]);
     }
 
 }
