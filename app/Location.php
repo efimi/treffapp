@@ -30,11 +30,13 @@ class Location extends Model
 
     static public function getPossibleLocations($amount)
     {
-        $today = Carbon::now()->formatLocalized('%A');
-        return self::whereRaw('used_places <= max_places - '.$amount)
+
+        $today = Carbon::now()->dayOfWeek;
+
+        return self::whereRaw('used_places <= max_places - ' . $amount)
             ->where('closed_on', '!=', $today)
             ->orderBy('used_places', 'DESC')
             ->inRandomOrder()
-            ->get()->first();
+            ->first();
     }
 }

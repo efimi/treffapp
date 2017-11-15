@@ -10,6 +10,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 
 use App\Location;
 use Carbon\Carbon;
+use App\Mail\Reservation;
 
 class LocationsController extends Controller
 {
@@ -21,7 +22,7 @@ class LocationsController extends Controller
 
     public function start()
     {
-
+        Carbon::setlocale(LC_TIME, 'de_De');
         $today = Carbon::now()->formatLocalized('%A %d %B %Y');
         $location = null;
         return view('start', compact('location', 'today'));
@@ -49,7 +50,7 @@ class LocationsController extends Controller
                 $location->used_places += $amount;
                 if ($location->save()) {
                     if ($location->used_places == $location->max_places) {
-                        \Mail::to($location->email)->send(New Welcome($location));
+                        \Mail::to($location)->send(New Reservation($location));
                     }
                     if ($user->save()) {
                         return view('visitors.current', compact('location'));
