@@ -1,4 +1,6 @@
-Fehler: Was machen wenn alle locations voll sind. 
+
+
+ Was machen wenn alle locations voll sind. 
 
 
 
