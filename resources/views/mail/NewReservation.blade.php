@@ -20,10 +20,10 @@ Ihr {{ config('app.name') }} Team.
 
 <br>
 <br>
-<a href="padermeet.de/impressum">Impressum</a> | <a href="padermeet.de/FAQ">FAQ</a>
+<a href="www.padermeet.de/impressum">Impressum</a> | <a href="www.padermeet.de/FAQ">FAQ</a>
 
 <p>Falls keine Reservierung möglich ist klicken Sie bitte auf den folgenden link</p>
-<a href="padermeet.de/noreservation/{{$location->id}}"></a>
+<a href="www.padermeet.de/noreservation/{{$location->id}}"></a>
 <p>Falls dennoch Gäste mit der Reservierung "Padermeet" vorbeikommen, bitten Sie diese bitte einfach nochmal auf der Seite nachzuschauen, mit dem Hinweis, dass Sie leider keine Reservierung machen konnten.</p>
 
 @endcomponent
