@@ -1,3 +1,12 @@
+Fehler beim Facebooklogin: 
+	Wenn man auf "abbrechen" auf der facebook seite drückt
+		Client error: `POST https://graph.facebook.com/v2.10/oauth/access_token` resulted in a `400 Bad Request` response:
+{"error":{"message":"Missing authorization code","type":"OAuthException","code":1,"fbtrace_id":"ChxTUjBMDjs"}}
+
+		at Client->request('post', 'https://graph.facebook.com/v2.10/oauth/access_token', array('form_params' => array('client_id' => '1534184019997838', 'client_secret' => 'c85ec491dc4063856fa88ed8ed173bf5', 'code' => null, 'redirect_uri' => 'http://pader.dev/auth/facebook/callback'), 'synchronous' => true))
+in Client.php (line 89)
+
+
 fehler: Rekonstrutkion: kein user, neu login, erstelln von user,fun
 		dann klick auf button, fun
 		Dann fehler, wenn eine location schon bis auf einen voll ist.
