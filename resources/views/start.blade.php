@@ -1,42 +1,34 @@
 @extends('layouts.master_static')
 
 @section('content')
-
     <div class="jumbotron no-margin no-padding-bottom">
         <p>Heute ist {{ $today }}</p>
-        <p class="lead">Drücke auf den Button</p>
-        <p class="lead">und finde heraus wo es heute für dich hingeht</p>
-        <p>
-            @if($location)
-                <button class="btn btn-primary" role="button" id="button" onclick="$('html, body').animate({
-        scrollTop: $('#database_entry').offset().top
-    }, 500);">  <span class="inner">Wir warten auf dich :) </span> </button>
-              @else
-                  <form class="" action="" method="post">
-                     <label class="checkbox-inline" ><input type="checkbox" id="together">Wir kommen zu zweit.</label>
-                  </form>
-              <div class="btn btn-primary" role="button" id="button">  <span class="inner"> Let's Go! </span> </div>
-
+        @if(Auth::check())
+            @if(Auth::user()->last_click != Carbon\Carbon::now()->toDateString())
+                <p class="lead">Drücke auf den Button</p>
+                <p class="lead">und finde heraus wo es heute für dich hingeht</p>
+                <label class="checkbox-inline"><input type="checkbox" id="together">Wir kommen zu zweit.</label>
+                <br>
+                <div class="btn btn-primary" role="button" id="button"><span class="inner"> Let's Go! </span></div>
             @endif
-            </p>
+        @endif
     </div>
 
     <div class="jumbotron" id="resultview">
         <div id="database_entry">
-            @if($location)
-                <h1>{{ $location->name }}</h1>
-                <h3>Heute 20:00</h3>
-                <br>
-                @include('locations.map', $location)
-                <br>
-
-                @include('visitors.current', $location)
+            @if(Auth::check())
+                @if(Auth::user()->last_click == Carbon\Carbon::now()->toDateString())
+                    @include('visitors.current', $location = \App\Location::find(Auth::user()->location_id))
+                @endif
             @endif
-        </div>
+            <br>
+            <p>Ich würde gerne in kontakt bleiben, falls sich die Location ändern sollte.
+                <button type="button" name="button"><a href="padermeet.de/registermail">Email hinterlegen</a></button>
 
-        {{-- @include('ip_debug') --}}
+            </p>
+        </div>
     </div>
     @if(!$location)
         <script src="js/buttonclick.js"></script>
     @endif
-@endsection
+@endsection#

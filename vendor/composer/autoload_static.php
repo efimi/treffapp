@@ -77,6 +77,10 @@ class ComposerStaticInit9af31fc39bea5df8e921d62f7094aa04
             'Laravel\\Tinker\\' => 15,
             'Laravel\\Socialite\\' => 18,
         ),
+        'J' => 
+        array (
+            'Jenssegers\\Date\\' => 16,
+        ),
         'I' => 
         array (
             'Illuminate\\' => 11,
@@ -228,6 +232,10 @@ class ComposerStaticInit9af31fc39bea5df8e921d62f7094aa04
         array (
             0 => __DIR__ . '/..' . '/laravel/socialite/src',
         ),
+        'Jenssegers\\Date\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jenssegers/date/src',
+        ),
         'Illuminate\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate',
@@ -324,14 +332,10 @@ class ComposerStaticInit9af31fc39bea5df8e921d62f7094aa04
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
-        'App\\Http\\Controllers\\ChatsController' => __DIR__ . '/../..' . '/app/Http/Controllers/ChatsController.php',
-        'App\\Http\\Controllers\\CodesController' => __DIR__ . '/../..' . '/app/Http/Controllers/CodesController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\LocationsController' => __DIR__ . '/../..' . '/app/Http/Controllers/LocationsController.php',
-        'App\\Http\\Controllers\\QuestionsController' => __DIR__ . '/../..' . '/app/Http/Controllers/QuestionsController.php',
         'App\\Http\\Controllers\\StaticSitesController' => __DIR__ . '/../..' . '/app/Http/Controllers/StaticSitesController.php',
-        'App\\Http\\Controllers\\VisitorsController' => __DIR__ . '/../..' . '/app/Http/Controllers/VisitorsController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
@@ -1681,6 +1685,8 @@ class ComposerStaticInit9af31fc39bea5df8e921d62f7094aa04
         'JakubOnderka\\PhpConsoleColor\\ConsoleColor' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/JakubOnderka/PhpConsoleColor/ConsoleColor.php',
         'JakubOnderka\\PhpConsoleColor\\InvalidStyleException' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/JakubOnderka/PhpConsoleColor/InvalidStyleException.php',
         'JakubOnderka\\PhpConsoleHighlighter\\Highlighter' => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src/JakubOnderka/PhpConsoleHighlighter/Highlighter.php',
+        'Jenssegers\\Date\\Date' => __DIR__ . '/..' . '/jenssegers/date/src/Date.php',
+        'Jenssegers\\Date\\DateServiceProvider' => __DIR__ . '/..' . '/jenssegers/date/src/DateServiceProvider.php',
         'Laravel\\Socialite\\AbstractUser' => __DIR__ . '/..' . '/laravel/socialite/src/AbstractUser.php',
         'Laravel\\Socialite\\Contracts\\Factory' => __DIR__ . '/..' . '/laravel/socialite/src/Contracts/Factory.php',
         'Laravel\\Socialite\\Contracts\\Provider' => __DIR__ . '/..' . '/laravel/socialite/src/Contracts/Provider.php',

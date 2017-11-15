@@ -10,21 +10,19 @@ class Location extends Model
 {
     //
     protected $guarded = [];
+
     public function visitors()
     {
-      return $this->hasMany(Visitor::class);
+        return $this->hasMany(Visitor::class);
     }
 
-
-    public function scopeIncrementUsedPlacesOf($query,$id)
+    static public function getPossibleLocations($amount)
     {
-      return $query->whereId($id)->increment('used_places');
+        $today = Carbon::now()->dayOfWeek;
+        return self::whereRaw('used_places <= max_places - ' . $amount)
+            ->where('closed_on', '!=', $today)
+            ->orderBy('used_places', 'DESC')
+            ->inRandomOrder()
+            ->first();
     }
-    public static function getNewRandom()
-    {
-      
-      $today = Carbon::now()->formatLocalized('%A');
-      return self::where('closed_on', '!=', $today)->where('is_used', false)->inRandomOrder()->first();
-    }
-
 }
