@@ -1,3 +1,7 @@
+Fehler: Was machen wenn alle locations voll sind. 
+
+
+
 Fehler beim Facebooklogin: 
 	Wenn man auf "abbrechen" auf der facebook seite drückt
 		Client error: `POST https://graph.facebook.com/v2.10/oauth/access_token` resulted in a `400 Bad Request` response:

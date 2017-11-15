@@ -8,9 +8,10 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Authenticatable;
 
+use Mail;
 use App\Location;
 use Carbon\Carbon;
-use App\Mail\Reservation;
+use App\Mail\NewReservation;
 
 class LocationsController extends Controller
 {
@@ -49,8 +50,8 @@ class LocationsController extends Controller
                 $user->location_id = $location->id;
                 $location->used_places += $amount;
                 if ($location->save()) {
-                    if ($location->used_places == $location->max_places) {
-                        \Mail::to($location)->send(New Reservation($location));
+                    if ($location->used_places >= $location->max_places) {
+                        Mail::to($location)->send(new NewReservation($location));
                     }
                     if ($user->save()) {
                         return view('visitors.current', compact('location'));
