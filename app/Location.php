@@ -19,10 +19,15 @@ class Location extends Model
     static public function getPossibleLocations($amount)
     {
         $today = Carbon::now()->dayOfWeek;
-        return self::whereRaw('used_places <= max_places - ' . $amount)
+        $location = self::whereRaw('used_places <= max_places - ' . $amount)
             ->where('closed_on', '!=', $today)
             ->orderBy('used_places', 'DESC')
             ->inRandomOrder()
             ->first();
+        if (empty($location)) {
+            $location = self::orderBy('used_places', 'ASC')
+                ->first();
+        }
+        return $location;
     }
 }
