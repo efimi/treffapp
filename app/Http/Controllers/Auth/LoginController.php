@@ -46,9 +46,12 @@ class LoginController extends Controller
         return Socialite::driver('facebook')->redirect();
     }
 
-    public function handleProviderCallback()
+    public function handleProvpublic function handleProviderCallback(Request $request)
     {
-
+        if (!$request->has('code') || $request->has('denied')) {
+            return redirect('/');
+        }
+        
         try {
             $user = Socialite::driver('facebook')->user();
 
