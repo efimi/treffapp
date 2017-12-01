@@ -23,7 +23,7 @@ class LocationsController extends Controller
 
     public function start()
     {
-        
+
         setlocale(LC_TIME, 'de_DE');
         setlocale(LC_TIME, 'German');
 

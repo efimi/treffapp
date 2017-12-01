@@ -22,8 +22,7 @@
                 @endif
             @endif
             <br>
-            <p>Ich würde gerne in kontakt bleiben, falls sich die Location ändern sollte.
-                <button type="button" name="button"><a href="padermeet.de/registermail">Email hinterlegen</a></button>
+            <p>Bitte überprüfe deine Profilemail, damit wir dich benachrichtigen können, falls sich die Location ändern sollte.
 
             </p>
         </div>
