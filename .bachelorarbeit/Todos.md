@@ -1,9 +1,14 @@
+email_benachrichtung
+OneSiganl Push benachrichtung - neuer User "Du bist nicht alleine"
+Dashboard - History
 
-warum wird bootstrap.min.css.
-http://padermeet.dev/css/bootstrap.min.css.mapFailed to load resource: the server responded with a status of 404 (Not Found)
+Frage:
+
+    warum wird bootstrap.min.css.
+    http://padermeet.dev/css/bootstrap.min.css.mapFailed to load resource: the server responded with a status of 404 (Not Found)
 
 
- Was machen wenn alle locations voll sind.
+ <!-- Was machen wenn alle locations voll sind. -->
 
 
 
@@ -44,6 +49,10 @@ Abmelden der mescnhen, neue location aussuchen.
 	user sollt eirgendwie Benachrichtigt werden
 
 Facebook event erstellen jeden tag neu mit durchzählen, sobald jemand das event erstellt hat.
+
+Instagramm login - später hinzufügen.
+
+
 
 Locaiton -> get facebookpage like button
 
