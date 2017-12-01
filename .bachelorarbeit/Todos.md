@@ -1,3 +1,5 @@
+warum wenn location als erstes gedrückt wrude -> fehler? 500 
+
 "ladet eure Bilder hoch" - die besten werden auf dem Channel Instagram gepostet"
 
 

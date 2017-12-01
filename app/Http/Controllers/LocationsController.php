@@ -57,6 +57,11 @@ class LocationsController extends Controller
                         Mail::to($location)->send(new NewReservation($location));
                     }
                     if ($user->save()) {
+                        $history = new History;
+                        $history->user_id = $user->id;
+                        $history->location_id = $location->id;
+                        $history->date = $user->last_click;
+                        $history->save();
                         return view('visitors.current', compact('location'));
                     }
                 }
