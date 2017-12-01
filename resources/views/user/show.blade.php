@@ -12,4 +12,33 @@
         <input type="email" name="email" value="" placeholder="{{ $user->email }}">
         <button type="submit" name="button">anpassen</button>
     </form>
+
+    <h2>Meine Padermeets:</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Datum</th>
+                <th>Treffpunkt</th>
+                <th colspan="5">Teilnehmer</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($history as $visit)
+                <tr>
+                    <td>{{ Carbon\Carbon::createFromFormat('Y-m-d', $visit->date)->format('d.m.Y') }}</td>
+                    <td><a href="/location/{{ $visit->location->id }}">{{ $visit->location->name}}</a></td>
+                    @foreach ($visit->getMember() as $member)
+                        <td>@if (!is_null($member->user->facebook_id))
+                        <a href="http://facebook.com/{{ $member->user->facebook_id }}">
+                        @endif{{ $member->user->name }}
+                        @if (!is_null($member->user->facebook_id))
+                        </a>
+                        @endif</td>
+                    @endforeach
+
+                </tr>
+
+            @endforeach
+        </tbody>
+    </table>
 @endsection

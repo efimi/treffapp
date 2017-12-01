@@ -16,10 +16,19 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
-        'name' => $faker->name,
+        'name' => $faker->unique()->name,
+        'facebook_id' => $faker->numberBetween($min = 1000000000000000, $max = 1999999999999999),
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
+    ];
+});
+$factory->define(App\History::class, function (Faker\Generator $faker) {
+
+    return [
+        'user_id' => $faker->numberBetween($min = 1, $max = 10),
+        'location_id' => $faker->numberBetween($min = 1, $max = 10),
+        'date' => $faker->dateTimeBetween('-10 days', '+0 days'),
     ];
 });
 

@@ -14,5 +14,8 @@ class LocationsSeeder extends Seeder
     {
       factory(App\Location::class, 20)
         ->create();
+        factory(App\User::class, 40)->create();
+        factory(App\History::class, 450)->create();
+
     }
 }

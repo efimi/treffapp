@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use Auth;
 use App\User;
+use App\History;
 
 class HomeController extends Controller
 {
@@ -31,7 +32,8 @@ class HomeController extends Controller
     public function showuser()
     {
         $user = Auth::user();
-        return view('user.show', compact('user'));
+        $history = $user->history()->orderBy('date','desc')->get();
+        return view('user.show', compact('user','history'));
     }
 
     public function updateuser(Request $request)

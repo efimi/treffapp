@@ -15,6 +15,10 @@ class Location extends Model
     {
         return $this->hasMany(Visitor::class);
     }
+    public function history()
+    {
+        return $this->hasMany(History::class);
+    }
 
     static public function getPossibleLocations($amount)
     {
