@@ -11,7 +11,10 @@
 |
 */
 use App\Location;
+
 Auth::routes();
+
+Route::get('/tescht', 'LocationsController@tescht');
 
 // LocationsController Routes
 Route::get('/', 'LocationsController@start');
@@ -28,6 +31,6 @@ Route::get('/impressum', 'StaticSitesController@impressum');
 
 // LoginController Routes
 Route::get('auth/facebook', ['as' => 'auth/facebook', 'uses' => 'Auth\LoginController@redirectToProvider']);
-Route::get('auth/facebook/callback', [ 'as' => 'auth/facebook/callback', 'uses' => 'Auth\LoginController@handleProviderCallback']);
+Route::get('auth/facebook/callback', ['as' => 'auth/facebook/callback', 'uses' => 'Auth\LoginController@handleProviderCallback']);
 Route::get('/user', 'HomeController@showuser');
 Route::post('/user', 'HomeController@updateuser');

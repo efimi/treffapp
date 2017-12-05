@@ -4,7 +4,7 @@
     <div class="jumbotron no-margin no-padding-bottom">
         <p>Heute ist {{ $today }}</p>
         @if(Auth::check())
-            @if(Auth::user()->last_click != Carbon\Carbon::now()->toDateString())
+            @if(empty(Auth::user()->last_click()) OR Auth::user()->last_click()->date != Carbon\Carbon::now()->toDateString())
                 <p class="lead">Drücke auf den Button</p>
                 <p class="lead">und finde heraus wo es heute für dich hingeht</p>
                 <label class="checkbox-inline"><input type="checkbox" id="together">Wir kommen zu zweit.</label>
@@ -17,8 +17,8 @@
     <div class="jumbotron" id="resultview">
         <div id="database_entry">
             @if(Auth::check())
-                @if(Auth::user()->last_click == Carbon\Carbon::now()->toDateString())
-                    @include('visitors.current', $location = \App\Location::find(Auth::user()->location_id))
+                @if(!empty(Auth::user()->last_click()) AND Auth::user()->last_click()->date == Carbon\Carbon::now()->toDateString())
+                    @include('visitors.current', $location = \App\Location::find(Auth::user()->last_click()->location_id))
                 @endif
             @endif
             <br>

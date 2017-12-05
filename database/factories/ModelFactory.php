@@ -43,7 +43,6 @@ $factory->define(App\Location::class, function () {
         'name' => $faker->randomElement($resOrCaf) . $faker->unique()->Lastname,
         'address' => $faker->randomElement($addRand) . $faker->unique()->numberBetween($min = 1, $max = 70),
         'is_used' => 0,
-        'used_places' => 0,
         'max_places' => 5,
         'url' => $faker->url,
         'slogan' => $faker->unique()->sentence($nbWords = 6, $variableNbWords = true),
