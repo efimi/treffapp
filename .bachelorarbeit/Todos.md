@@ -1,3 +1,14 @@
+
+aus Hisotry last_click raussuchen
+
+5 sec zum bestätigen - ich gehe hin. 
+
+python - googlemaps get 
+
+benachrichtungsMail erstelen. 
+
+oopening Hours erstellen
+
 warum wenn location als erstes gedrückt wrude -> fehler? 500 
 
 "ladet eure Bilder hoch" - die besten werden auf dem Channel Instagram gepostet"

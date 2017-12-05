@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
-
+use App\OpeningHours;
 
 class Location extends Model
 {
@@ -14,6 +14,10 @@ class Location extends Model
     public function visitors()
     {
         return $this->hasMany(Visitor::class);
+    }
+    public function openinHours()
+    {
+        return $this->hasMany(OpeningHours::class, 'location_id');
     }
     public function history()
     {
