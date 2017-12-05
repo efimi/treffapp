@@ -1,15 +1,15 @@
 
-aus Hisotry last_click raussuchen
+<!-- aus Hisotry last_click raussuchen -->
 
 5 sec zum bestätigen - ich gehe hin. 
 
-python - googlemaps get 
+python - googlemaps get
 
-benachrichtungsMail erstelen. 
+benachrichtungsMail erstelen.
 
 oopening Hours erstellen
 
-warum wenn location als erstes gedrückt wrude -> fehler? 500 
+warum wenn location als erstes gedrückt wrude -> fehler? 500
 
 "ladet eure Bilder hoch" - die besten werden auf dem Channel Instagram gepostet"
 
