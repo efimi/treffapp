@@ -22,6 +22,9 @@
                 @endif
             @endif
             <br>
+            <div id="confrimButton">
+
+            </div>
             <p>Bitte überprüfe deine Profilemail, damit wir dich benachrichtigen können, falls sich die Location ändern sollte.
 
             </p>

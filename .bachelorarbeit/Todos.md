@@ -1,4 +1,15 @@
+bei sbest'tiguung- zukünftige ohne button 
 
+bei abbrechen - message - warte 10 minuten
+	last_click 
+
+
+Spontanitäts bonus - wenn man beim ersten mal direkt hingeht... 
+
+
+
+ladeAnimation Map
+tescht loeschen - spaeter
 <!-- aus Hisotry last_click raussuchen -->
 
 5 sec zum bestätigen - ich gehe hin. 

@@ -19,6 +19,7 @@ Route::get('/tescht', 'LocationsController@tescht');
 // LocationsController Routes
 Route::get('/', 'LocationsController@start');
 Route::post('/getplace', 'LocationsController@randPlace');
+Route::post('/confirmThatICome', 'LocationsController@confirmThatICome');
 Route::get('/locations', 'LocationsController@index');
 Route::get('/locations/edit', 'LocationsController@edit');
 Route::post('/locations/edit', 'LocationsController@store');
