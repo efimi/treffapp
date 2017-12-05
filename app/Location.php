@@ -16,10 +16,12 @@ class Location extends Model
     {
         return $this->hasMany(Visitor::class);
     }
+
     public function openinHours()
     {
         return $this->hasMany(OpeningHours::class, 'location_id');
     }
+
     public function history()
     {
         return $this->hasMany(History::class);
@@ -29,15 +31,23 @@ class Location extends Model
     {
         $today = Carbon::now()->dayOfWeek;
 
-        $locations = self::;
+        $locations = self::where('closed_on', '!=', $today)->get();
 
+        foreach ($locations AS $key => $location) {
+            $locations[$key]['used_places'] = $location->used_places();
+        }
 
-        // return self::whereRaw('used_places <= max_places - ' . $amount)
-        //     ->where('closed_on', '!=', $today)
-        //     ->orderBy('used_places', 'DESC')
-        //     ->inRandomOrder()
-        //     ->first();
+        $locations->each(function ($location, $key) use ($amount, $locations) {
+            if (($location['used_places'] + $amount) > $location->max_places) {
+                $locations->forget($key);
+            }
+        });
+
+        $locations = $locations->sortByDesc('used_places');
+
+        return $locations->first();
     }
+
     public function used_places()
     {
         return count(History::where('date', Carbon::now()->toDateString())->where('location_id', $this->id)->get());

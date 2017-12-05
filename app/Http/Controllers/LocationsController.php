@@ -19,7 +19,7 @@ class LocationsController extends Controller
     //
     public function __construct()
     {
-        $this->middleware('auth')->except('index', 'show');
+        $this->middleware('auth')->except('index', 'show', 'tescht');
     }
 
     public function start()
@@ -34,6 +34,16 @@ class LocationsController extends Controller
     }
 
 
+    public function tescht()
+    {
+        $request = new \Illuminate\Http\Request();
+        $request->replace([
+            'together' => "true"
+        ]);
+
+        $this->randPlace($request);
+    }
+
     public function randPlace(Request $request)
     {
 
@@ -46,22 +56,20 @@ class LocationsController extends Controller
                 $amount = 1;
                 break;
         }
+
         $location = Location::getPossibleLocations($amount);
 
         if (!empty($location)) {
             $user = Auth::user();
-            $last_click = History::where('user_id', $user->id)->orderBy('date','asc')->first()->date;
-            if ($last_click != Carbon::now()->toDateString()) {
-                // $user->last_click = Carbon::now()->toDateString();
-                // $user->location_id = $location->id;
-                // $location->used_places += $amount;
+            $last_click = History::where('user_id', $user->id)->orderBy('date', 'asc')->first();
+            if (empty($last_click) OR $last_click->date != Carbon::now()->toDateString()) {
                 if ($location->used_places() >= $location->max_places) {
                     Mail::to($location)->send(new NewReservation($location));
                 }
                 $history = new History;
                 $history->user_id = $user->id;
                 $history->location_id = $location->id;
-                $history->date = $user->last_click;
+                $history->date = Carbon::now()->toDateString();
                 $history->save();
                 return view('visitors.current', compact('location'));
             }

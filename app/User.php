@@ -27,8 +27,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-    public function history()       
+    public function history()
     {
         return $this->hasMany(History::class);
+    }
+
+    public function last_click(){
+        return History::where('user_id', $this->id)->orderBy('date', 'DESC')->get()->first();
     }
 }
