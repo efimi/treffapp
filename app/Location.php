@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use App\OpeningHours;
+use App\History;
 
 class Location extends Model
 {
@@ -27,10 +28,18 @@ class Location extends Model
     static public function getPossibleLocations($amount)
     {
         $today = Carbon::now()->dayOfWeek;
-        return self::whereRaw('used_places <= max_places - ' . $amount)
-            ->where('closed_on', '!=', $today)
-            ->orderBy('used_places', 'DESC')
-            ->inRandomOrder()
-            ->first();
+
+        $locations = self::;
+
+
+        // return self::whereRaw('used_places <= max_places - ' . $amount)
+        //     ->where('closed_on', '!=', $today)
+        //     ->orderBy('used_places', 'DESC')
+        //     ->inRandomOrder()
+        //     ->first();
+    }
+    public function used_places()
+    {
+        return count(History::where('date', Carbon::now()->toDateString())->where('location_id', $this->id)->get());
     }
 }

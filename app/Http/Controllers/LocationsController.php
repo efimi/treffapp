@@ -10,6 +10,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 
 use Mail;
 use App\Location;
+use App\History;
 use Carbon\Carbon;
 use App\Mail\NewReservation;
 
@@ -46,25 +47,23 @@ class LocationsController extends Controller
                 break;
         }
         $location = Location::getPossibleLocations($amount);
+
         if (!empty($location)) {
             $user = Auth::user();
-            if ($user->last_click != Carbon::now()->toDateString()) {
-                $user->last_click = Carbon::now()->toDateString();
-                $user->location_id = $location->id;
-                $location->used_places += $amount;
-                if ($location->save()) {
-                    if ($location->used_places >= $location->max_places) {
-                        Mail::to($location)->send(new NewReservation($location));
-                    }
-                    if ($user->save()) {
-                        $history = new History;
-                        $history->user_id = $user->id;
-                        $history->location_id = $location->id;
-                        $history->date = $user->last_click;
-                        $history->save();
-                        return view('visitors.current', compact('location'));
-                    }
+            $last_click = History::where('user_id', $user->id)->orderBy('date','asc')->first()->date;
+            if ($last_click != Carbon::now()->toDateString()) {
+                // $user->last_click = Carbon::now()->toDateString();
+                // $user->location_id = $location->id;
+                // $location->used_places += $amount;
+                if ($location->used_places() >= $location->max_places) {
+                    Mail::to($location)->send(new NewReservation($location));
                 }
+                $history = new History;
+                $history->user_id = $user->id;
+                $history->location_id = $location->id;
+                $history->date = $user->last_click;
+                $history->save();
+                return view('visitors.current', compact('location'));
             }
         }
         return "false";
