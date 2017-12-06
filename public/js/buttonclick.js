@@ -4,6 +4,7 @@ $(document).ready(function () {
     $('#button').one('click', function () {
 
         var btn = $(this);
+        var startBox = $('div#startBox');
         btn.attr('disabled', 'disabled');
         btn.children().text('Deine Location wird gesucht:');
         var amount = $('#together').is(':checked');
@@ -19,11 +20,10 @@ $(document).ready(function () {
                     // checkbox/-entfernen
                     $('input#together').parent().remove();
                     setTimeout( function(){
-                        var confBtn = $('button[name="confirmButton"]');
-                        confBtn.fadeout(function(){
+                        startBox.fadeOut(function(){
                             $(this).remove();
                         });
-                    }, 5000);
+                    }, 2000);
                 }
             },
             error: function (error) {
@@ -39,7 +39,7 @@ $(document).ready(function () {
         $.ajax({
             method: 'POST',
             url: '/confirmThatICome',
-            data: {'_token': $('meta[name=token]').attr("content"), 'location_id': $('input#location_id').val()},
+            data: {'_token': $('meta[name=token]').attr("content") },
             success: function (data){
                 $('div#returnMessage').html(data);
             },

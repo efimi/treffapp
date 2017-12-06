@@ -28,7 +28,7 @@ $factory->define(App\History::class, function (Faker\Generator $faker) {
     return [
         'user_id' => $faker->numberBetween($min = 1, $max = 10),
         'location_id' => $faker->numberBetween($min = 1, $max = 10),
-        'date' => $faker->dateTimeBetween('-10 days', '+0 days'),
+        'date' => $faker->dateTimeBetween($startDate = '-10 days', $endDate = 'now', $timezone = null),
     ];
 });
 

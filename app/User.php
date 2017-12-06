@@ -5,6 +5,10 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\History;
+use App\Location;
+use Carbon\Carbon;
+use Auth;
+
 
 class User extends Authenticatable
 {
@@ -33,6 +37,30 @@ class User extends Authenticatable
     }
 
     public function last_click(){
-        return History::where('user_id', $this->id)->orderBy('date', 'DESC')->get()->first();
+        $last = History::lastUserEntry($this);
+        return $last;
+    }
+    public function canPress()
+    {
+        // TODO: anpassen der Minuten
+        return empty($this->last_click()) OR $this->minutesTillPress() <= 0 ;
+    }
+    public function minutesTillPress()
+    {   $last_click = Carbon::parse($this->last_click()->date);
+        $minutes = 1;
+        $deadline = Carbon::now();
+        return $deadline->diffInMinutes($last_click->addMinutes($minutes), false);
+    }
+    public function hasLocationAlready()
+    {
+        $last = History::lastUserEntry($this);
+        if(empty($last)){
+            return false;
+        }
+        return $last->confirmed;
+    }
+    public function matchedLocation()
+    {
+        return Location::find($this->last_click()->location_id);
     }
 }

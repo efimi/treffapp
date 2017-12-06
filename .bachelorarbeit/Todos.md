@@ -1,4 +1,8 @@
-bei sbest'tiguung- zukünftige ohne button 
+eingeloogt beleiben
+
+
+
+bei besätitigung- zukünftige ohne button 
 
 bei abbrechen - message - warte 10 minuten
 	last_click 

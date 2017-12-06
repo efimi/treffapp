@@ -68,7 +68,7 @@ class LocationsController extends Controller
                 }
                 $history = new History;
                 $history->user_id = $user->id;
-                $history->location_id = $request->location_id;
+                $history->location_id = $location->id;
                 $history->date = Carbon::now();
                 $history->save();
                 return view('visitors.current', compact('location'));
@@ -76,15 +76,14 @@ class LocationsController extends Controller
         }
         return "false";
     }
-    public function confirmThatICome(Request $request)
+    public function confirmThatICome()
     {
         $user = Auth::user();
-        $history = new History;
-        $history->user_id = $user->id;
-        $history->location_id = $request->location_id;
-        $history->date = Carbon::now();
+        $history = History::where('user_id', $user->id)->orderby('date','DESC')->first();
         $history->confirmed = ture;
         $history->save();
+
+        return "<p>Viel spass bei der Location eingetragen</p>";
     }
     public function myplace()
     {

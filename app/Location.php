@@ -12,16 +12,11 @@ class Location extends Model
     //
     protected $guarded = [];
 
-    public function visitors()
-    {
-        return $this->hasMany(Visitor::class);
-    }
-
     public function openinHours()
     {
         return $this->hasMany(OpeningHours::class, 'location_id');
     }
-
+    
     public function history()
     {
         return $this->hasMany(History::class);
