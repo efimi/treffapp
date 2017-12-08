@@ -11,6 +11,8 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Mail;
 use App\Location;
 use App\History;
+use App\Canceld;
+
 use Carbon\Carbon;
 use App\Mail\NewReservation;
 
@@ -53,29 +55,34 @@ class LocationsController extends Controller
             $user = Auth::user();
             $last_click = History::where('user_id', $user->id)->orderBy('date', 'asc')->first();
             if (empty($last_click) OR $last_click->date != Carbon::now()->toDateString()) {
-                for ($i=0; $i < $amount ; $i++) {
                     $history = new History;
                     $history->user_id = $user->id;
                     $history->location_id = $location->id;
                     $history->date = Carbon::now();
+                    $history->amount = $amount;
                     $history->save();
-                }
 
                 return view('visitors.current', compact('location','amount'));
             }
         }
         return "false";
     }
+
     public function cancleReservation($id, $_token, $date)
     {
         $location = Location::find($id);
         if($location->token == $_token){
+            //erstmal eintragen das gecanceld wurde
+            $canceld = new Canceld;
+            $canceld->location_id = $location->id;
+            $canceld->save();
+            // suche alle user aus der History aus:
             $entries = History::whereRaw('Date(date) = Date('. $date .')')->where('location_id',$id)->get();
             $entries->each(function($entry, $key){
                 //weise allen neuen Place zu
-                    // update die histories
-                    //
-                //sende mails an alle
+                $entry->location_id = Location::getPossibleLocations($entry->amount)->id;
+                $entry->save();
+                //sende mails an alle User
                 $user = User::find($entry->user_id);
                 Mail::to($user)->send(new NewMatch($user));
             });
@@ -106,6 +113,22 @@ class LocationsController extends Controller
         }
 
         return "<p>Viel spass bei der Location. Du wurdest eingetragen</p>";
+    }
+
+    public function choseOneMoreTime($id, $_token, $date)
+    {
+        $user = User::find($id);
+
+        if($user->remember_token == $_token){
+            $historyToReset = History::lastUserEntry($user);
+            $historyToReset->confirmed = false;
+            $historyToReset->save();
+            return view('start');
+        }
+        else{
+            $message = "Der Link ist leider ungültig";
+            return view('fehler', compact('message'));
+        }
     }
     public function myplace()
     {

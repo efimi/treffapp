@@ -26,6 +26,7 @@ Route::post('/locations/edit', 'LocationsController@store');
 Route::get('/location/{location}', 'LocationsController@show');
 Route::get('/home', 'LocationsController@start')->name('home');
 Route::get('/cancleReservation/{id}/{token}/{date}', 'LocationsController@cancleReservation');
+Route::get('/choseOneMoreTime/{id}/{token}/{date}', 'LocationsController@choseOneMoreTime');
 
 
 // StaticSitesController Routes

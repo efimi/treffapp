@@ -35,6 +35,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(History::class);
     }
+    public function locationToday()
+    {
+        return Location::find($this->last_click()->location_id);
+    }
+    public function amount()
+    {
+        return History::lastUserEntry($this)->amount;
+    }
 
     public function last_click(){
         $last = History::lastUserEntry($this);

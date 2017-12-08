@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use App\OpeningHours;
 use App\History;
+use App\Reservation;
 
 class Location extends Model
 {
@@ -15,6 +16,11 @@ class Location extends Model
     public function openinHours()
     {
         return $this->hasMany(OpeningHours::class, 'location_id');
+    }
+
+    public function isCanceld($date)
+    {
+        return !empty(Reservation::where('location_id', $this->id )->whereRaw('Date(date) = Date('. $date .')')->first());
     }
 
     public function history()
@@ -33,7 +39,7 @@ class Location extends Model
         }
 
         $locations->each(function ($location, $key) use ($amount, $locations) {
-            if (($location['used_places'] + $amount) > $location->max_places) {
+            if (($location['used_places'] + $amount) > $location->max_places OR $location->isCanceld(Carbon::now())) {
                 $locations->forget($key);
             }
         });
