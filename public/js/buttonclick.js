@@ -7,12 +7,18 @@ $(document).ready(function () {
         var startBox = $('div#startBox');
         btn.attr('disabled', 'disabled');
         btn.children().text('Deine Location wird gesucht:');
-        var amount = $('#together').is(':checked');
+        if ($('#together').is(':checked')) {
+                var amount = 1;
+        }
+        else {
+                var amount = 2;
+        }
+
 
         $.ajax({
-            url: '/getplace',
+            url: '/getplace/' + amount,
             method: 'POST',
-            data: {'_token': $('meta[name=token]').attr("content"), 'together': amount},
+            data: {'_token': $('meta[name=token]').attr("content") },
             success: function (data){
                 if(data != "false"){
                     $('div#database_entry').html(data);
@@ -24,6 +30,11 @@ $(document).ready(function () {
                             $(this).remove();
                         });
                     }, 2000);
+                    setTimeout( function(){
+                        $('button[name="confirmButton"]').fadeOut(function(){
+                            $(this).remove();
+                        });
+                    }, 5000);
                 }
             },
             error: function (error) {
@@ -35,10 +46,11 @@ $(document).ready(function () {
         var timeout = setTimeout(showPage, 3000);
     });
 
+
     $(document).one('click', 'button[name="confirmButton"]', function (){
         $.ajax({
             method: 'POST',
-            url: '/confirmThatICome',
+            url: '/confirmThatICome/' + $(this).data("amount") ,
             data: {'_token': $('meta[name=token]').attr("content") },
             success: function (data){
                 $('div#returnMessage').html(data);

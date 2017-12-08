@@ -18,13 +18,15 @@ Route::get('/tescht', 'LocationsController@tescht');
 
 // LocationsController Routes
 Route::get('/', 'LocationsController@start');
-Route::post('/getplace', 'LocationsController@randPlace');
-Route::post('/confirmThatICome', 'LocationsController@confirmThatICome');
+Route::post('/getplace/{amount}', 'LocationsController@randPlace');
+Route::post('/confirmThatICome/{amount}', 'LocationsController@confirmThatICome');
 Route::get('/locations', 'LocationsController@index');
 Route::get('/locations/edit', 'LocationsController@edit');
 Route::post('/locations/edit', 'LocationsController@store');
 Route::get('/location/{location}', 'LocationsController@show');
 Route::get('/home', 'LocationsController@start')->name('home');
+Route::get('/cancleReservation/{id}/{token}/{date}', 'LocationsController@cancleReservation');
+
 
 // StaticSitesController Routes
 Route::get('/faq', 'StaticSitesController@faq');

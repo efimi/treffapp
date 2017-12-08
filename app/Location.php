@@ -16,7 +16,7 @@ class Location extends Model
     {
         return $this->hasMany(OpeningHours::class, 'location_id');
     }
-    
+
     public function history()
     {
         return $this->hasMany(History::class);
@@ -39,12 +39,12 @@ class Location extends Model
         });
 
         $locations = $locations->sortByDesc('used_places');
-
+        // TODO: in Random Order
         return $locations->first();
     }
 
     public function used_places()
     {
-        return count(History::where('date', Carbon::now()->toDateString())->where('location_id', $this->id)->get());
+        return History::whereRaw('Date(date) = CURDATE()')->where('location_id', $this->id)->where('confirmed', 1)->get()->pluck('amount')->sum();
     }
 }

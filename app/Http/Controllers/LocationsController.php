@@ -19,7 +19,7 @@ class LocationsController extends Controller
     //
     public function __construct()
     {
-        $this->middleware('auth')->except('index', 'show', 'tescht');
+        $this->middleware('auth')->except('index', 'show', 'cancleReservation');
     }
 
     public function start()
@@ -44,18 +44,8 @@ class LocationsController extends Controller
         $this->randPlace($request);
     }
 
-    public function randPlace(Request $request)
+    public function randPlace($amount)
     {
-
-        switch ($request->together) {
-            case "true":
-                $amount = 2;
-                break;
-            default:
-            case "false":
-                $amount = 1;
-                break;
-        }
 
         $location = Location::getPossibleLocations($amount);
 
@@ -63,27 +53,59 @@ class LocationsController extends Controller
             $user = Auth::user();
             $last_click = History::where('user_id', $user->id)->orderBy('date', 'asc')->first();
             if (empty($last_click) OR $last_click->date != Carbon::now()->toDateString()) {
-                if ($location->used_places() >= $location->max_places) {
-                    Mail::to($location)->send(new NewReservation($location));
+                for ($i=0; $i < $amount ; $i++) {
+                    $history = new History;
+                    $history->user_id = $user->id;
+                    $history->location_id = $location->id;
+                    $history->date = Carbon::now();
+                    $history->save();
                 }
-                $history = new History;
-                $history->user_id = $user->id;
-                $history->location_id = $location->id;
-                $history->date = Carbon::now();
-                $history->save();
-                return view('visitors.current', compact('location'));
+
+                return view('visitors.current', compact('location','amount'));
             }
         }
         return "false";
     }
-    public function confirmThatICome()
+    public function cancleReservation($id, $_token, $date)
+    {
+        $location = Location::find($id);
+        if($location->token == $_token){
+            $entries = History::whereRaw('Date(date) = Date('. $date .')')->where('location_id',$id)->get();
+            $entries->each(function($entry, $key){
+                //weise allen neuen Place zu
+                    // update die histories
+                    //
+                //sende mails an alle
+                $user = User::find($entry->user_id);
+                Mail::to($user)->send(new NewMatch($user));
+            });
+
+            // Lösche alle confirmed
+
+
+            return view('cancleReservation', compact('location'));
+        }
+        else{
+            $message = "Der Reservierungsabbruch Link ist leider ungültig";
+            return view('fehler', compact('message'));
+        }
+    }
+
+    public function confirmThatICome($amount)
     {
         $user = Auth::user();
-        $history = History::where('user_id', $user->id)->orderby('date','DESC')->first();
-        $history->confirmed = ture;
-        $history->save();
+        $histories = History::lastUserEntry($user, $amount);
+        foreach ($histories as $history) {
+            $history->confirmed = true;
+            $history->save();
+        }
 
-        return "<p>Viel spass bei der Location eingetragen</p>";
+        $location = Location::find($histories->first()->location_id);
+        if ($location->used_places() >= $location->max_places) {
+            Mail::to($location)->send(new NewReservation($location));
+        }
+
+        return "<p>Viel spass bei der Location. Du wurdest eingetragen</p>";
     }
     public function myplace()
     {

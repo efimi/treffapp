@@ -51,6 +51,7 @@ $factory->define(App\Location::class, function () {
         'closed_on' => $closed_on,
         'open_from' => '17:00',
         'open_till' => '23:00',
+        'token' => str_random(20),
 
     ];
 });

@@ -18,6 +18,7 @@ class CreateHistoriesTable extends Migration
             $table->integer('user_id')->nullable()->unsigned();
             $table->integer('location_id')->nullable()->unsigned();
             $table->timestamp('date')->nullable();
+            $table->integer('amount')->default(1);
             $table->boolean('confirmed')->default(false);
             $table->timestamps();
         });
