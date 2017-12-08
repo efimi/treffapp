@@ -5,11 +5,20 @@ Padermeet - die Treffapp für Paderborn!
 @endcomponent
 
 
-# Hallo {{ $location->name }} Team
+# Hallo {{ $user->name }}!
 
-Die Padermeet.de App hat heute einen Tisch mit {{ $location->max_places }} für Sie vollgemacht - es wäre nett, wenn sie diesen reservieren könnten.
+Die Padermeet.de App für dich einen neue Location ausgesucht, weil die vorherige Locaiton heute leider keinen ganzen Tisch für alle reservieren konnte.
+Deine Neue Location lautet:
 
-für Feedback währen wir Ihnen sehr dankbar.
+# {{ $user->locationToday()->name }}
+in der
+{{  $user->locationToday()->adress }}
+
+Viel Spass!
+
+
+
+Für Feedback wären wir dir sehr dankbar:
 
 @component('mail::button', ['url' => 'http://www.padermeet.de/feedback'])
 Feedback
@@ -22,10 +31,10 @@ Ihr {{ config('app.name') }} Team.
 <br>
 <a href="http://www.padermeet.de/impressum">Impressum</a> | <a href="http://www.padermeet.de/FAQ">FAQ</a>
 
-<p>Falls keine Reservierung möglich ist klicken Sie bitte auf den folgenden link</p>
-<p>Diejenigen die auf ihre Location gemacht wurden, werden im folgenden benachrichtigt werden.</p>
-@component('mail::button', ['url' =>  config('app.url') . '/cancleReservation/' . $location->id . '/' . $location->token . '/' . Carbon\Carbon::now() ])
-Die Reseriverung abbrechen
+Falls du doch nocheinmal selber eine Location suchen willst, clicke auf den folgenden Button:
+
+@component('mail::button', ['url' =>  config('app.url') . '/choseOneMoreTime/' . $user->id . '/' . $user->remember_token . '/' . Carbon\Carbon::now() ])
+Ich will nochmal auf dem Button klicken und mir selber eine Location aussuchen
 @endcomponent
 
 

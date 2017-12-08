@@ -16,10 +16,19 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
-        'name' => $faker->name,
+        'name' => $faker->unique()->name,
+        'facebook_id' => $faker->numberBetween($min = 1000000000000000, $max = 1999999999999999),
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
+    ];
+});
+$factory->define(App\History::class, function (Faker\Generator $faker) {
+
+    return [
+        'user_id' => $faker->numberBetween($min = 1, $max = 10),
+        'location_id' => $faker->numberBetween($min = 1, $max = 10),
+        'date' => $faker->dateTimeBetween($startDate = '-10 days', $endDate = 'now', $timezone = null),
     ];
 });
 
@@ -34,7 +43,6 @@ $factory->define(App\Location::class, function () {
         'name' => $faker->randomElement($resOrCaf) . $faker->unique()->Lastname,
         'address' => $faker->randomElement($addRand) . $faker->unique()->numberBetween($min = 1, $max = 70),
         'is_used' => 0,
-        'used_places' => 0,
         'max_places' => 5,
         'url' => $faker->url,
         'slogan' => $faker->unique()->sentence($nbWords = 6, $variableNbWords = true),
@@ -43,6 +51,7 @@ $factory->define(App\Location::class, function () {
         'closed_on' => $closed_on,
         'open_from' => '17:00',
         'open_till' => '23:00',
+        'token' => str_random(20),
 
     ];
 });

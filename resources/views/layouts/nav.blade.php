@@ -4,7 +4,7 @@
         @if (Auth::guest())
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Login</button>
         @else
-            <a href="#" class="btn " role="button" aria-expanded="ture">
+            <a href="/user" class="btn " role="button" aria-expanded="ture">
                 {{ Auth::user()->name }}
             </a>
             <br>

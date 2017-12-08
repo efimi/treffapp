@@ -327,8 +327,11 @@ class ComposerStaticInit9af31fc39bea5df8e921d62f7094aa04
     );
 
     public static $classMap = array (
+        'App\\Canceld' => __DIR__ . '/../..' . '/app/Canceld.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\Day' => __DIR__ . '/../..' . '/app/Day.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\History' => __DIR__ . '/../..' . '/app/History.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
@@ -343,8 +346,10 @@ class ComposerStaticInit9af31fc39bea5df8e921d62f7094aa04
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Location' => __DIR__ . '/../..' . '/app/Location.php',
+        'App\\Mail\\NewMatch' => __DIR__ . '/../..' . '/app/Mail/NewMatch.php',
         'App\\Mail\\NewReservation' => __DIR__ . '/../..' . '/app/Mail/NewReservation.php',
         'App\\Mail\\Welcome' => __DIR__ . '/../..' . '/app/Mail/Reservation.php',
+        'App\\OpeningHours' => __DIR__ . '/../..' . '/app/OpeningHours.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',

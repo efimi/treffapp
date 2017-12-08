@@ -21,10 +21,10 @@ class CreateLocationsTable extends Migration
 
             $table->string('phonenumber')->nullable();
             $table->string('mobile')->nullable();
-            $table->string('email',100)->nullable();
+            $table->string('email', 100)->nullable();
             $table->string('password')->nullable();
-            $table->Integer('used_places')->unsigned()->default(0);
             $table->Integer('max_places')->unsigned()->default(4);
+
 
             $table->integer('closed_on')->nullable();
             $table->time('open_from')->nullable();
@@ -33,10 +33,8 @@ class CreateLocationsTable extends Migration
             $table->string('logo_path')->default('logos/example.png');
             $table->string('slogan')->nullable();
             $table->string('url')->nullable();
+            $table->string('token');
             $table->timestamps();
-        });
-        Schema::table('users', function (Blueprint $table) {
-            $table->foreign('location_id')->references('id')->on('locations');
         });
     }
 
