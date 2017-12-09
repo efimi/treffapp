@@ -108,11 +108,11 @@ class LocationsController extends Controller
         }
 
         $location = Location::find($histories->first()->location_id);
-        if ($location->used_places() >= $location->max_places) {
+        if ($location->used_places() >= $location->max_places AND !empty($location->email)) {
             Mail::to($location)->send(new NewReservation($location));
         }
 
-        return "<p>Viel spass bei der Location. Du wurdest eingetragen</p>";
+        return "<br><p>Viel spass bei der Location. Du wurdest eingetragen</p>";
     }
 
     public function choseOneMoreTime($id, $_token, $date)
