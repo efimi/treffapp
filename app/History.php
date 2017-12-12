@@ -23,9 +23,9 @@ class History extends Model
         return History::where('date', $this->date)->where('date', '!=', date('d.m.Y'))->where('location_id', $this->location_id)->where('user_id', '!=', $this->user_id)->get();
     }
 
-    public static function lastUserEntry(User $user, $amount)
+    public static function lastUserEntry(User $user)
     {
-        return History::where('user_id', $user->id)->orderBy('date', 'DESC')->take($amount)->get();
+        return History::where('user_id', $user->id)->orderBy('date', 'DESC')->first();
     }
 
 

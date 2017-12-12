@@ -1,5 +1,5 @@
-# Einleitung
+# Einleitung und Vorwort
 
 :tada: __Eine App um sich kennen zu lernen__
 
-Heutzutage haben viele Menschen Probleme mit neunen Menschen in Kontakt zu treten (Quelle). Gerade wenn man neu in der Stadt ist, sei es aus um zug oder 
+Trotz der vielzahl der Apps, die es auf dem Markt gibt, habe ich eine App vermisst, die auf das wesendliche reduziert ist und 

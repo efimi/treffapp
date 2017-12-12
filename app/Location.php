@@ -46,6 +46,7 @@ class Location extends Model
 
         $locations = $locations->sortByDesc('used_places');
         // TODO: in Random Order
+        dd($locations);
         return $locations->first();
     }
 
