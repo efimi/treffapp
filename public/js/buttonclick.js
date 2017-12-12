@@ -50,7 +50,7 @@ $(document).ready(function () {
     $(document).one('click', 'button[name="confirmButton"]', function (){
         $.ajax({
             method: 'POST',
-            url: '/confirmThatICome/' + $(this).data("amount") ,
+            url: '/confirmThatICome',
             data: {'_token': $('meta[name=token]').attr("content") },
             success: function (data){
                 $('div#returnMessage').html(data);

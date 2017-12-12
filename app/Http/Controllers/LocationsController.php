@@ -55,14 +55,14 @@ class LocationsController extends Controller
             $user = Auth::user();
             $last_click = History::where('user_id', $user->id)->orderBy('date', 'asc')->first();
             if (empty($last_click) OR $last_click->date != Carbon::now()->toDateString()) {
-                    $history = new History;
-                    $history->user_id = $user->id;
-                    $history->location_id = $location->id;
-                    $history->date = Carbon::now();
-                    $history->amount = $amount;
-                    $history->save();
+                $history = new History;
+                $history->user_id = $user->id;
+                $history->location_id = $location->id;
+                $history->date = Carbon::now();
+                $history->amount = $amount;
+                $history->save();
 
-                return view('visitors.current', compact('location','amount'));
+                return view('visitors.current', compact('location', 'amount'));
             }
         }
         return "false";
@@ -71,14 +71,14 @@ class LocationsController extends Controller
     public function cancleReservation($id, $_token, $date)
     {
         $location = Location::find($id);
-        if($location->token == $_token){
+        if ($location->token == $_token) {
             //erstmal eintragen das gecanceld wurde
             $canceld = new Canceld;
             $canceld->location_id = $location->id;
             $canceld->save();
             // suche alle user aus der History aus:
-            $entries = History::whereRaw('Date(date) = Date('. $date .')')->where('location_id',$id)->get();
-            $entries->each(function($entry, $key){
+            $entries = History::whereRaw('Date(date) = Date(' . $date . ')')->where('location_id', $id)->get();
+            $entries->each(function ($entry, $key) {
                 //weise allen neuen Place zu
                 $entry->location_id = Location::getPossibleLocations($entry->amount)->id;
                 $entry->save();
@@ -91,23 +91,19 @@ class LocationsController extends Controller
 
 
             return view('cancleReservation', compact('location'));
-        }
-        else{
+        } else {
             $message = "Der Reservierungsabbruch Link ist leider ungültig";
             return view('fehler', compact('message'));
         }
     }
 
-    public function confirmThatICome($amount)
+    public function confirmThatICome()
     {
         $user = Auth::user();
-        $histories = History::lastUserEntry($user, $amount);
-        foreach ($histories as $history) {
-            $history->confirmed = true;
-            $history->save();
-        }
-
-        $location = Location::find($histories->first()->location_id);
+        $history = History::lastUserEntry($user);
+        $history->confirmed = true;
+        $history->save();
+        $location = Location::find($history->location_id);
         if ($location->used_places() >= $location->max_places AND !empty($location->email)) {
             Mail::to($location)->send(new NewReservation($location));
         }
@@ -119,17 +115,17 @@ class LocationsController extends Controller
     {
         $user = User::find($id);
 
-        if($user->remember_token == $_token){
+        if ($user->remember_token == $_token) {
             $historyToReset = History::lastUserEntry($user);
             $historyToReset->confirmed = false;
             $historyToReset->save();
             return view('start');
-        }
-        else{
+        } else {
             $message = "Der Link ist leider ungültig";
             return view('fehler', compact('message'));
         }
     }
+
     public function myplace()
     {
         return response()->json([

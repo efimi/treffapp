@@ -22,11 +22,13 @@ class Location extends Model
     {
         return $this->hasMany(Reservation::class, 'location_id');
     }
+
     // Todo: function functioniert nicht
     public function reservationFor($date)
     {
-        return $this->reservations()->whereRaw('date('. $date .') = date(created_at)')->first();
+        return $this->reservations()->whereRaw('date(' . $date . ') = date(created_at)')->first();
     }
+
     public function reservationForToday()
     {
         return $this->reservations()->whereRaw('CURRENT_DATE = date(created_at)')->first();
@@ -34,11 +36,18 @@ class Location extends Model
 
     public function hasCanceld($date)
     {
-        return $this->reservationFor($date)->isCanceld();
+        if (!is_null($this->reservationForToday())) {
+            return $this->reservationFor($date)->isCanceld();
+        }
+        return false;
     }
-     public function hasCanceldToday()
+
+    public function hasCanceldToday()
     {
-        return $this->reservationForToday()->isCanceld();
+        if (!is_null($this->reservationForToday())) {
+            return $this->reservationForToday()->canceld;
+        }
+        return false;
     }
 
     public function history()
@@ -64,7 +73,6 @@ class Location extends Model
 
         $locations = $locations->sortByDesc('used_places');
         // TODO: in Random Order
-        dd($locations);
         return $locations->first();
     }
 

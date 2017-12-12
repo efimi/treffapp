@@ -13,14 +13,4 @@ class Reservation extends Model
     {
         return $this->belongsTo(Location::class, 'location_id');
     }
-    
-    public function isCanceld()
-    {
-    	if (empty($this)) {
-    		return false;
-    	}
-    	else {
-    		return $this->canceld;
-    	}
-    }
 }
