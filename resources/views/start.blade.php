@@ -14,7 +14,7 @@
                     <br><br>
                     <div class="btn btn-primary" role="button" id="button"><span class="inner"> Let's Go! </span></div>
                 @else
-                    <p class="lead">Versuche es in {{Auth::user()->minutesTillPress() }} Minuten nocheinmal</p>
+                    <p class="lead">Versuche es in {{Auth::user()->minutesTillPressAllowed() }} Minuten nocheinmal</p>
                     <a href="http://www.padermeet.dev"> Lade die Seite nocheinmal neu.</a>
                 @endif
             </div>

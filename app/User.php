@@ -51,9 +51,9 @@ class User extends Authenticatable
     public function canPress()
     {
         // TODO: anpassen der Minuten
-        return empty($this->last_click()) OR $this->minutesTillPress() <= 0 ;
+        return empty($this->last_click()) OR $this->minutesTillPressAllowed() <= 0 ;
     }
-    public function minutesTillPress()
+    public function minutesTillPressAllowed()
     {   $last_click = Carbon::parse($this->last_click()->date);
         $minutes = 1;
         $deadline = Carbon::now();

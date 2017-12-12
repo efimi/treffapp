@@ -8,10 +8,10 @@ $(document).ready(function () {
         btn.attr('disabled', 'disabled');
         btn.children().text('Deine Location wird gesucht:');
         if ($('#together').is(':checked')) {
-                var amount = 1;
+                var amount = 2;
         }
         else {
-                var amount = 2;
+                var amount = 1;
         }
 
 
