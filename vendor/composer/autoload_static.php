@@ -326,7 +326,6 @@ class ComposerStaticInit9af31fc39bea5df8e921d62f7094aa04
     );
 
     public static $classMap = array (
-        'App\\Canceld' => __DIR__ . '/../..' . '/app/Canceld.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Day' => __DIR__ . '/../..' . '/app/Day.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
@@ -345,6 +344,7 @@ class ComposerStaticInit9af31fc39bea5df8e921d62f7094aa04
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Location' => __DIR__ . '/../..' . '/app/Location.php',
+        'App\\Mail\\NewMatch' => __DIR__ . '/../..' . '/app/Mail/NewMatch.php',
         'App\\Mail\\NewReservation' => __DIR__ . '/../..' . '/app/Mail/NewReservation.php',
         'App\\Mail\\Welcome' => __DIR__ . '/../..' . '/app/Mail/Reservation.php',
         'App\\OpeningHours' => __DIR__ . '/../..' . '/app/OpeningHours.php',
@@ -353,6 +353,7 @@ class ComposerStaticInit9af31fc39bea5df8e921d62f7094aa04
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
+        'App\\Reservation' => __DIR__ . '/../..' . '/app/Reservation.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'App\\Visitor' => __DIR__ . '/../..' . '/app/Visitor.php',
         'BaconQrCode\\Common\\AbstractEnum' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Common/AbstractEnum.php',

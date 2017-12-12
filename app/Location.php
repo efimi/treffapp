@@ -18,9 +18,27 @@ class Location extends Model
         return $this->hasMany(OpeningHours::class, 'location_id');
     }
 
-    public function isCanceld($date)
+    public function reservations()
     {
-        return !empty(Reservation::where('location_id', $this->id )->whereRaw('Date(date) = Date('. $date .')')->first());
+        return $this->hasMany(Reservation::class, 'location_id');
+    }
+    // Todo: function functioniert nicht
+    public function reservationFor($date)
+    {
+        return $this->reservations()->whereRaw('date('. $date .') = date(created_at)')->first();
+    }
+    public function reservationForToday()
+    {
+        return $this->reservations()->whereRaw('CURRENT_DATE = date(created_at)')->first();
+    }
+
+    public function hasCanceld($date)
+    {
+        return $this->reservationFor($date)->isCanceld();
+    }
+     public function hasCanceldToday()
+    {
+        return $this->reservationForToday()->isCanceld();
     }
 
     public function history()
@@ -39,7 +57,7 @@ class Location extends Model
         }
 
         $locations->each(function ($location, $key) use ($amount, $locations) {
-            if (($location['used_places'] + $amount) > $location->max_places OR $location->isCanceld(Carbon::now())) {
+            if (($location['used_places'] + $amount) > $location->max_places OR $location->hasCanceldToday()) {
                 $locations->forget($key);
             }
         });
