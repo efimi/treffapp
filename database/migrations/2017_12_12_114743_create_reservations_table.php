@@ -16,7 +16,7 @@ class CreateReservationsTable extends Migration
         Schema::create('reservations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('location_id')->nullable()->unsigned();
-            $table->boolean('canceld');
+            $table->boolean('was_canceld')->default(false);
             $table->timestamps();
         });
     }
