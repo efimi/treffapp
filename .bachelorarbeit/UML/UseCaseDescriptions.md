@@ -68,3 +68,23 @@ Wenn alle Treffpunkte auf die maximale Anzahl aufgefüllt wurden, werden alle na
 
 Beim Betrachten der Varianten __C1__ und folgende scheinen auf den Ersten Blick einleuchtend zu sein. Locations, die nicht genügend Platz haben, möchten ihre Besucher nicht verunglimpfen und ihnen schon im vorraus Bescheid geben, dass sie keine bzw. nur eine angepasste (weniger Leute) Reservierung tätigen können. Im nachhinein würde mann dann die Nutzer neu zuweisen müssen. Da die Locations allerdings begrenzt sind und bei zu vielen Teilnehmern schon befüllte Locations überfüllt werden, macht es hier keinen Unterschied, ob die Location den Platz reservieren kann, oder nicht. Zudem kommt noch der Punkt, dass man sich hier nicht sicher sein kann, ob die Nutzer die die Location zugewiesen bekamen, auch wirklich auftauchen und sich nicht eben so spontan dafür entscheiden 'doch nicht hinzugehen'.
 An dieser Stelle wäre eine einfache Benachrichtigungsmail an die Location - nach dem Motto - aufpassen, da kommen welche zusammen - wahrscheinlich am sinnvollsten. 
+
+
+Für Feedback gibt es ein formular, bei welchem der User seine eindrücke des Treffens niederschreiben kann. Dazu gehören editier und Speicher und einzeigenfunktion. 
+
+# Hilfsskripte
+ein Hilfsskrip wäre ich ein python skript, welches eine Tabelle mit den einträgen der bar erstellt.
+Dafür wird eine google Api benötigt.
+
+
+
+# Anforderungen 
+
+Die Locations sollen in Zukunft vorausbestimmen können, wann sie wie viele Leute haben möchten. Leichte überbühungen sollen dabei erlaubt sein. 
+
+Dazu wird eine Reservierungstablle erstellt. Bei welcher die Locations jeden Tag in der Woche eine bestimmte anzahl an Menschen festlegen können. 
+
+
+## Der Matching Alogrithmus
+Die User sollten die Möglichkeit bekommen nicht auf die selbe Location zweimal gematcht zu werden. 
+Auf wäre es sinnvoll wenn geschaut wird, dass die User möglichst verschieden sind. Falls beispielsweise die MÖGLICHKEIT besteht, dass ein User entweder der einen oder der anderen Location zugeortndet werden soll, dann sollte der Algortihmus diejenige Location dem User zuweisen, bei welchem möglichst viele unbekannte Menschen dabei sind.

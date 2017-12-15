@@ -49,23 +49,22 @@ class Location extends Model
     static public function getPossibleLocations($amount)
     {
         $today = Carbon::now()->dayOfWeek;
-
         $locations = self::where('closed_on', '!=', $today)->get();
-
         foreach ($locations AS $key => $location) {
             $locations[$key]['used_places'] = $location->used_places();
         }
-
         $locations->each(function ($location, $key) use ($amount, $locations) {
-            if (($location['used_places'] + $amount) > $location->max_places OR $location->hasCanceldToday()) {
+            if (($location['used_places'] + $amount) > $location->max_places) {
                 $locations->forget($key);
             }
         });
-
-        $locations = $locations->sortByDesc('used_places');
+        $locations = $locations->sortByDesc('used_places')->shuffle();
+        // wenn alle schon belegt sind
+        if (empty($locations)){
+            $locations = self::where('closed_on', '!=', $today)->get();
+        }
         // TODO: in Random Order
-        dd($locations);
-        return $locations->first();
+        return $locations;
     }
 
     public function used_places()

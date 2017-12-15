@@ -20,7 +20,7 @@ class Reservation extends Model
     		return false;
     	}
     	else {
-    		return $this->canceld;
+    		return $this->was_canceld;
     	}
     }
 }

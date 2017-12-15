@@ -16,9 +16,9 @@ $(document).ready(function () {
 
 
         $.ajax({
-            url: '/getplace/' + amount,
+            url: '/getplace',
             method: 'POST',
-            data: {'_token': $('meta[name=token]').attr("content") },
+            data: {'_token': $('meta[name=token]').attr("content"), 'amount' : amount },
             success: function (data){
                 if(data != "false"){
                     $('div#database_entry').html(data);
@@ -50,7 +50,7 @@ $(document).ready(function () {
     $(document).one('click', 'button[name="confirmButton"]', function (){
         $.ajax({
             method: 'POST',
-            url: '/confirmThatICome/' + $(this).data("amount") ,
+            url: '/confirmThatICome' ,
             data: {'_token': $('meta[name=token]').attr("content") },
             success: function (data){
                 $('div#returnMessage').html(data);

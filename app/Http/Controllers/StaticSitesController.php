@@ -9,10 +9,10 @@ class StaticSitesController extends Controller
     //
     public function faq()
     {
-        return view('faq');
+        return view('static.faq');
     }
     public function impressum()
     {
-        return view('impressum');
+        return view('static.impressum');
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Location;
 use App\User;
+use Carbon\Carbon;
 
 class History extends Model
 {
@@ -14,10 +15,22 @@ class History extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
     public function location()
     {
         return $this->belongsTo(Location::class, 'location_id');
     }
+
+    public static function makeNewEntry($user, $location, $amount)
+    {
+        $history = new History;
+        $history->user_id = $user->id;
+        $history->location_id = $location->id;
+        $history->date = Carbon::now();
+        $history->amount = $amount;
+        $history->save();
+    }
+
     public function getMember()
     {
         return History::where('date', $this->date)->where('date', '!=', date('d.m.Y'))->where('location_id', $this->location_id)->where('user_id', '!=', $this->user_id)->get();
