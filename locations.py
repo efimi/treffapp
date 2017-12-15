@@ -1,3 +1,4 @@
+from __future__ import print_function
 from googleplaces import GooglePlaces, types, lang
 import pprint
 
@@ -6,9 +7,11 @@ api_key = 'AIzaSyAJ4-7cvzD1FXN2JisaRlTdF3RzfXRUE7o'
 google_places = GooglePlaces(api_key)
 pp = pprint.PrettyPrinter(indent=4)
 # You may prefer to use the text_search API, instead.
-query_result = google_places.nearby_search(
-        location='Paderborn, Germany', keyword='bar', opennow='ture',
-        radius=1000)
+# query_result = google_places.nearby_search(
+#         location='Paderborn, Germany', keyword='bar',
+#         radius=1000)
+query_result = google_places.radar_search(
+        lat_lng={'lat': 51.71905, 'lng': 8.75439}, keyword='bar', opennow=True, radius=1000)
         # radius=700, types=[types.TYPE_FOOD])
 # If types param contains only 1 item the request to Google Places API
 # will be send as type param to fullfil:
@@ -19,21 +22,20 @@ query_result = google_places.nearby_search(
 #     pp.pprint (query_result.html_attributions)
 
 i = 1
-for place in query_result.places:
+for place in query_result.places[1:2]:
     # Returned places from a query are place summaries.
-    print (i)
-    print (place.name)
-    # The following method has to make a further API call.
     place.get_details()
-    print (place.formatted_address)
+    # print (i, place.name,place.formatted_address,place.international_phone_number,place.website,place.url, sep=';', end='\n')
+    # The following method has to make a further API call.
     i = i + 1
     # Referencing any of the attributes below, prior to making a call to
     # get_details() will raise a googleplaces.GooglePlacesAttributeError.
-    # pp.pprint (place.details )# A dict matching the JSON response from Google.
+    pp.pprint (place.details )# A dict matching the JSON response from Google.
     # print (place.local_phone_number)
-    # print (place.international_phone_number)
-    # print (place.website)
-    # print (place.url)
+    print ()
+
+    print ()
+    print ()
         
     # for photo in place.photos[:2]:
     #     photo.get(maxheight=500, maxwidth=500)
