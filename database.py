@@ -46,7 +46,7 @@ query_result = google_places.radar_search(lat_lng={'lat': 51.71905, 'lng': 8.754
 i = 1
 for place in query_result.places:
 	token = binascii.hexlify(os.urandom(n))
-    place.get_details()
-    Location.create(place.name, place.formatted_address, place.international_phone_number, "email@me.com ,token,place.website,place.url)
-    i = i + 1
-    outputJson = place.details 
+	place.get_details()
+	Location.create(place.name, place.formatted_address, place.international_phone_number, "email@me.com", token, place.website, place.url)
+	i = i + 1
+	outputJson = place.details 

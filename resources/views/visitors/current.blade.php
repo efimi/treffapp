@@ -10,7 +10,7 @@
     @else
         <p> Derzeit kommen noch {{ $location->used_places() }} weitere Personen zum {{ $location->name }}! :) </p>
     @endif
-    <button class="btn btn-primary" type="button" name="confirmButton" data-amount="{{ $amount }}"> Ich gehe hin! </button>
+    <button class="btn btn-primary" type="button" name="confirmButton"> Ich gehe hin! </button>
     <div id="returnMessage">
 
     </div>

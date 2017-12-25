@@ -67,6 +67,15 @@ class User extends Authenticatable
         }
         return $last->confirmed;
     }
+    public function getLastConfirmedLcoation()
+    {
+        if ($this->hasLocationAlready() == 'true ') {
+            return History::lastUserEntry($this);
+        }
+        else {
+            return null;
+        }
+    }
     public function matchedLocation()
     {
         return Location::find($this->last_click()->location_id);

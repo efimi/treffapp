@@ -32,6 +32,10 @@ Route::get('/choseOneMoreTime/{id}/{token}/{date}', 'LocationsController@choseOn
 Route::get('/faq', 'StaticSitesController@faq');
 Route::get('/impressum', 'StaticSitesController@impressum');
 
+// Feedback
+Route::post('/feedback','FeedbackController@giveFeedback');
+Route::get('/feedback','FeedbackController@showForm');
+
 // LoginController Routes
 Route::get('auth/facebook', ['as' => 'auth/facebook', 'uses' => 'Auth\LoginController@redirectToProvider']);
 Route::get('auth/facebook/callback', ['as' => 'auth/facebook/callback', 'uses' => 'Auth\LoginController@handleProviderCallback']);
